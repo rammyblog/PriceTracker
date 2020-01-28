@@ -1,7 +1,6 @@
-
-from django.conf.urls import url
+from django.urls import path
 from . import views
 
 urlpatterns = [
-    url(r'^tracker/', views.tracker_view, name='tracker'),
+    path('', views.tracker_view, name='tracker'),
 ]

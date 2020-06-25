@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404,HttpResponseRedirect 
 from .models import Item
 from .forms import AddNewItemForm
-from .utils import crawl_data
+# from .utils import CrawlData
 
 def tracker_view(request):
     items = Item.objects.order_by('-id')
@@ -12,7 +12,7 @@ def tracker_view(request):
             requested_price = form.cleaned_data.get('requested_price')
 
             # crawling the data
-            crawled_data = crawl_data(url)
+            # crawled_data = crawl_data(url)
             Item.objects.create(
                 url = url,
                 title = crawled_data['title'],

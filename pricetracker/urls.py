@@ -19,5 +19,9 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('pricechecker.urls'))
+    path('',include('pricechecker.urls')),
+    path('api/', include('rest_auth.urls')),
+    path('api/', include('api.urls'))
+    
+
 ]

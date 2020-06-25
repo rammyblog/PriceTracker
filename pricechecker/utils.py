@@ -28,20 +28,34 @@ class CrawlData:
         
     def crawl_konga(self, url):
         document = self.load_url(url)
-        price = document.find("input", {'name': 'product_price'}).get('value')
-        title = document.find("title").get_text()
+
+        try:
+            price = document.find("input", {'name': 'product_price'}).get('value')
+            title = document.find("title").get_text().split('|')[0]
+            
+        except:
+            price = '0'
+            title = 'Not Found'
+        
+        
         return {
-            'title':title.split('|')[0],
+            'title':title,
             'last_price': price
         }
         
         
     def crawl_jumia(self, url):
         document = self.load_url(url)
-        price = document.find("span", {'class': "-b -ltr -tal -fs24"}).get_text().replace("₦", "").strip()
-        title = document.find("title").get_text()
+        
+        try:
+                
+            price = document.find("span", {'class': "-b -ltr -tal -fs24"}).get_text().replace("₦", "").strip()
+            title = document.find("title").get_text().split('|')[0]
+        except:
+            price = '0'
+            title = 'Not Found'
         return {
-            'title':title.split('|')[0],
+            'title':title,
             'last_price': price
         }
         

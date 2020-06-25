@@ -24,15 +24,17 @@ class ItemSerializer(serializers.ModelSerializer):
         request = self.context.get("request")
         if request and hasattr(request, "user"):
             return request.user
-        return None    
+        return None 
+       
     def create(self, obj):
-        print(obj)
         owner = self.get_user()
+        if Item.objects.filter(url=obj['url']).exists():
+            raise serializers.ValidationError('Oppss, This url already exists, Kindly edit it to make any changes')
         crawled_data =  self.get_item_data(obj['url'], obj['store'])
-        obj.title = crawled_data['data']
-        obj.last_price = crawled_data['last_price']     
-        obj.save()
-        return obj
+        obj['title'] = crawled_data['title']
+        obj['last_price'] = crawled_data['last_price']     
+        return Item.objects.create(**obj)
+
 
     
     # def save(self, obj):

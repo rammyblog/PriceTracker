@@ -1,7 +1,15 @@
 import time
 from celery import shared_task
 from .models import Item
-from .utils import crawl_data
+from .utils import CrawlData
+
+
+def get_item_data( url, store):
+    crawl = CrawlData()
+    if store == 'KO':
+        return crawl.crawl_konga(url)
+    if store == 'JM':
+        return crawl.crawl_jumia(url)
 
 
 @shared_task
@@ -11,10 +19,11 @@ def track_for_discount():
 
     for item in items:
 
-        #crawl item url
-        data = crawl_data(item.url)
 
-        if data['last_price'] < item.requested_price:
+        #crawl item url
+        data = get_item_data(item.url, item.store)
+
+        if data['last_price'] <= item.requested_price:
             print(f'Discount for {data["title"]}')
             # update discount field to notify user
             item_discount = Item.objects.get(id=item.id)
@@ -40,5 +49,5 @@ def track_for_not_discount():
 while True:
     track_for_discount()
     time.sleep(15)
-    track_for_not_discount()
-    time.sleep(15)
+    # track_for_not_discount()
+    # time.sleep(15)

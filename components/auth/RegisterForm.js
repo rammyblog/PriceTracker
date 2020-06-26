@@ -3,10 +3,15 @@ import React, { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../../context/auth/authContext"
 import AuthContextHOC from "./AuthContextHOC"
 import { Form, Input, Button, Alert, Spin } from "antd"
-import { UserOutlined, LockOutlined, LoadingOutlined } from "@ant-design/icons"
+import {
+  UserOutlined,
+  LockOutlined,
+  LoadingOutlined,
+  MailOutlined,
+} from "@ant-design/icons"
 import { Typography } from "antd"
 
-function LoginForm() {
+function RegisterForm() {
   const { Title, Text } = Typography
   const [form] = Form.useForm()
   const [, forceUpdate] = useState() // To disable submit button at the beginning.
@@ -14,12 +19,12 @@ function LoginForm() {
     forceUpdate({})
   }, [])
 
-  const { loginUser, state, authReset } = useContext(AuthContext)
+  const { loginUser, state, authReset, registerUser } = useContext(AuthContext)
   const { loading, token, error, errResponse } = state
 
   const onFinish = (values) => {
     console.log("Success:", values)
-    loginUser(values)
+    registerUser(values)
   }
 
   const onFinishFailed = (errorInfo) => {
@@ -44,9 +49,9 @@ function LoginForm() {
       >
         <LockOutlined style={{ fontSize: "2rem", color: "#08c" }} />
 
-        <Title level={2}>Welcome Back</Title>
+        <Title level={2}>Welcome To Price Tracker</Title>
 
-        <Text>Login here using your username and password</Text>
+        <Text>Register here to start tracking prices like an OG</Text>
         {error ? (
           <Alert
             message={errResponse}
@@ -56,6 +61,7 @@ function LoginForm() {
             showIcon
           />
         ) : null}
+
         <Form.Item
           name="username"
           rules={[
@@ -67,24 +73,78 @@ function LoginForm() {
         >
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="Username"
+            placeholder="username"
+          />
+        </Form.Item>
+
+        <Form.Item
+          name="email"
+          rules={[
+            {
+              type: "email",
+              message: "The input is not valid E-mail!",
+            },
+            {
+              required: true,
+              message: "Please input your E-mail!",
+            },
+          ]}
+        >
+          <Input
+            prefix={<MailOutlined className="site-form-item-icon" />}
+            placeholder="email"
+            type="email"
           />
         </Form.Item>
         <Form.Item
-          name="password"
+          name="password1"
           rules={[
             {
               required: true,
               message: "Please input your password!",
             },
+            ({ getFieldValue }) => ({
+              validator(rule, value) {
+                if (value.length >= 8) {
+                  return Promise.resolve()
+                }
+
+                return Promise.reject(
+                  "The Password has to be 8 characters long"
+                )
+              },
+            }),
+          ]}
+          hasFeedback
+        >
+          <Input.Password placeholder="Enter Password" />
+        </Form.Item>
+
+        <Form.Item
+          name="password2"
+          dependencies={["password1"]}
+          hasFeedback
+          rules={[
+            {
+              required: true,
+              message: "Please confirm your password!",
+            },
+            ({ getFieldValue }) => ({
+              validator(rule, value) {
+                if (!value || getFieldValue("password1") === value) {
+                  return Promise.resolve()
+                }
+
+                return Promise.reject(
+                  "The two passwords that you entered do not match!"
+                )
+              },
+            }),
           ]}
         >
-          <Input
-            prefix={<LockOutlined className="site-form-item-icon" />}
-            type="password"
-            placeholder="Password"
-          />
+          <Input.Password placeholder="Confirm Password" />
         </Form.Item>
+
         <Form.Item shouldUpdate>
           {() => (
             <Button
@@ -109,4 +169,4 @@ function LoginForm() {
   )
 }
 
-export default AuthContextHOC(LoginForm)
+export default AuthContextHOC(RegisterForm)

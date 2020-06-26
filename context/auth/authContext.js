@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
         })
 
         let res = await axios.post(`${BASE_AUTH_URL}login/`, userData)
-        console.log(res.data)
+
         const token = res.data.key
         const expirationDate = new Date(new Date().getTime() + 3600 * 1000)
         localStorage.setItem("priceTrackerToken", token)
@@ -37,13 +37,47 @@ export const AuthProvider = ({ children }) => {
       } catch (e) {
         dispatch({
           type: types.AUTH_FAILURE,
-          payload: e.response.data.non_field_errors || "An error occured",
+          payload: e.response.data.error_msg || "An error occured",
         })
-        console.log(e.response.data.non_field_errors)
+        console.log(e.response.data)
       }
     },
     [dispatch]
   )
+
+  const registerUser = useCallback(
+    async (userData) => {
+      try {
+        dispatch({
+          type: types.AUTH_START,
+        })
+
+        let res = await axios.post(`${BASE_AUTH_URL}register/`, userData)
+
+        const token = res.data.key
+        const expirationDate = new Date(new Date().getTime() + 3600 * 1000)
+        localStorage.setItem("priceTrackerToken", token)
+        localStorage.setItem("expirationDate", expirationDate)
+
+        dispatch({
+          type: types.AUTH_SUCCESS,
+          payload: res.data,
+        })
+      } catch (e) {
+        dispatch({
+          type: types.AUTH_FAILURE,
+          payload: e.response.data.error_msg || "An error occured",
+        })
+        console.log(e.response.data)
+      }
+    },
+    [dispatch]
+  )
+
+  const authReset = () =>
+    dispatch({
+      type: types.AUTH_RESET,
+    })
 
   //   useEffect(() => {
   //     loginUser("NG")
@@ -54,6 +88,8 @@ export const AuthProvider = ({ children }) => {
       value={{
         state,
         loginUser,
+        authReset,
+        registerUser
       }}
     >
       {children}

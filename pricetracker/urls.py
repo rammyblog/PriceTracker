@@ -21,7 +21,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('pricechecker.urls')),
     path('api/', include('rest_auth.urls')),
-    path('api/', include('api.urls'))
+    path('api/', include('api.urls')),
+    path('api/register/', include('rest_auth.registration.urls')),
     
 
 ]

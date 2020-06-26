@@ -1,9 +1,26 @@
 from pricechecker.models import Item
 from pricechecker.utils import CrawlData
 from rest_framework import serializers
+from .mixins import CustomErrorSerializer
 
 
-class ItemSerializer(serializers.ModelSerializer):
+from django.utils.translation import ugettext_lazy as _
+
+from rest_auth.serializers import PasswordResetSerializer, LoginSerializer
+from .mixins import CustomErrorSerializer
+from rest_auth.registration.serializers import RegisterSerializer
+
+
+
+class RegisterSerializer(CustomErrorSerializer, RegisterSerializer):
+    pass
+
+class PasswordResetSerializer(CustomErrorSerializer, PasswordResetSerializer):
+    pass
+
+class LoginSerializer(CustomErrorSerializer, LoginSerializer):
+    pass
+class ItemSerializer(CustomErrorSerializer, serializers.ModelSerializer):
     
     
     class Meta:

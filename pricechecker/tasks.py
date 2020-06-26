@@ -23,7 +23,7 @@ def track_for_discount():
         #crawl item url
         data = get_item_data(item.url, item.store)
 
-        if data['last_price'] <= item.requested_price:
+        if int(data['last_price']) <= item.requested_price:
             print(f'Discount for {data["title"]}')
             # update discount field to notify user
             item_discount = Item.objects.get(id=item.id)

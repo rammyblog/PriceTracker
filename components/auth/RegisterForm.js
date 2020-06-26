@@ -158,6 +158,7 @@ function RegisterForm() {
                   .length ||
                 loading
               }
+              onClick={() => authReset()}
             >
               {" "}
               {loading ? <Spin indicator={antIcon} /> : " Log in"}

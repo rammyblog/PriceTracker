@@ -12,7 +12,7 @@ class Item(models.Model):
     title = models.CharField(max_length=200, null=True, blank=True)
     url = models.CharField(max_length=600, null=True, blank=True)
     requested_price = models.IntegerField(default=0)
-    last_price = models.IntegerField(null=True, blank=True)
+    last_price = models.CharField(max_length=100,null=True, blank=True)
     discount_price = models.CharField(max_length=100, null=True, blank=True)
     store = models.CharField(
         max_length=2,

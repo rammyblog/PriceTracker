@@ -15,6 +15,7 @@ class ItemViewSet(viewsets.ModelViewSet):
     
 
     def get_queryset(self):
+        print(self.request.user)
         return Item.objects.filter(owner=self.request.user)
     
     

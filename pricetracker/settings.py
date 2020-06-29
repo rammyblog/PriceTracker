@@ -149,3 +149,15 @@ REST_AUTH_SERIALIZERS = {
     'LOGIN_SERIALIZER': 'api.serializers.LoginSerializer',
     'PASSWORD_RESET_SERIALIZER': 'api.serializers.PasswordResetSerializer',
 }
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+
+
+
+}

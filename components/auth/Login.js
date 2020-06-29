@@ -5,7 +5,7 @@ import AuthContextHOC from "./AuthContextHOC"
 import { Form, Input, Button, Alert, Spin } from "antd"
 import { UserOutlined, LockOutlined, LoadingOutlined } from "@ant-design/icons"
 import { Typography } from "antd"
-
+import Link from "next/link"
 function LoginForm() {
   const { Title, Text } = Typography
   const [form] = Form.useForm()
@@ -105,6 +105,11 @@ function LoginForm() {
             </Button>
           )}
         </Form.Item>
+        <Link href="/register/">
+          <a>
+            <Text className="link-text">Don't have an account? Sign Up</Text>
+          </a>
+        </Link>
       </Form>
     </>
   )

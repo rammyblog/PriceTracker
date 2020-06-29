@@ -9,6 +9,8 @@ import {
   LoadingOutlined,
   MailOutlined,
 } from "@ant-design/icons"
+import Link from "next/link"
+
 import { Typography } from "antd"
 
 function RegisterForm() {
@@ -165,6 +167,12 @@ function RegisterForm() {
             </Button>
           )}
         </Form.Item>
+
+        <Link href="/login/">
+          <a>
+            <Text className="link-text">Already have an account? Sign in</Text>
+          </a>
+        </Link>
       </Form>
     </>
   )

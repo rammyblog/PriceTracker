@@ -2,6 +2,7 @@ import React, { createContext, useReducer, useEffect, useCallback } from "react"
 import AuthReducer from "./authReducer"
 import axios from "axios"
 import * as types from "./authTypes"
+import priceTrackerApi from "../../api/apiUtils"
 
 const initialAuthState = {
   loading: false,
@@ -23,7 +24,7 @@ export const AuthProvider = ({ children }) => {
           type: types.AUTH_START,
         })
 
-        let res = await axios.post(`${BASE_AUTH_URL}login/`, userData)
+        let res = await priceTrackerApi.post(`api/login/`, userData)
 
         const token = res.data.key
         const expirationDate = new Date(new Date().getTime() + 3600 * 1000)
@@ -89,7 +90,7 @@ export const AuthProvider = ({ children }) => {
         state,
         loginUser,
         authReset,
-        registerUser
+        registerUser,
       }}
     >
       {children}

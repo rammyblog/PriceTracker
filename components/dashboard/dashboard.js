@@ -10,6 +10,7 @@ import "./dashboardStyle.less"
 import EditableTable from "./table/DataTable"
 import DashboardContextHOC from "./DashboardContextHOC"
 import DataTables from "./table/Table"
+import WelcomeCard from "./card/WelcomeCard"
 
 function DashboardLayout() {
   const { Header, Content, Footer, Sider } = Layout
@@ -52,6 +53,7 @@ function DashboardLayout() {
               className="site-layout-background"
               style={{ padding: 24, minHeight: 360 }}
             >
+              <WelcomeCard />
               <DataTables />
             </div>
           </Content>

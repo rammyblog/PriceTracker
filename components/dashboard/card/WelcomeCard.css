@@ -1,7 +1,8 @@
 .info-card {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   width: 60%;
+  flex-wrap: wrap;
 }
 .ant-card {
   background: #FFFFFF;
@@ -9,9 +10,6 @@
   border: 1px solid #E0E6ED;
   box-sizing: border-box;
   border-radius: 10px;
-}
-.card-user-info-container {
-  width: 45%;
 }
 .welcome-text {
   font-weight: 500;
@@ -22,10 +20,26 @@
   margin: 0;
 }
 .welcome-text-muted {
+  width: 45%;
   font-size: 16px;
   line-height: 28px;
   /* or 175% */
   letter-spacing: 0.01em;
   /* smoke-dark */
   color: #9DA8B6 !important;
+}
+.welcome__details__pill {
+  display: flex;
+  justify-content: space-between;
+}
+@media screen and (max-width: 800px) {
+  .info-card {
+    width: 100%;
+  }
+  .card-user-info-container {
+    width: 100%;
+  }
+  .welcome-text-muted {
+    width: 100%;
+  }
 }

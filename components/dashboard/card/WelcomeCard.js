@@ -4,6 +4,7 @@ const { Meta } = Card
 
 import React from "react"
 import WelcomeCardInfo from "./WelcomeCardInfo"
+import Pill from "../../common/Pill"
 const cardBoxInfo = [
   { number: 33, text: "Total Users", variant: "primary" },
   { number: 33, text: "Active Users", variant: "success" },
@@ -14,7 +15,11 @@ export default function WelcomeCard() {
     <div>
       <Card>
         <div className="card-user-info-container">
-          <p className="welcome-text">Welcome, Fana</p>
+          <div className="welcome__details__pill">
+            <p className="welcome-text">Welcome, Fana</p>
+            <Pill text={"Tracker Info"} />
+          </div>
+
           <span className="welcome-text-muted">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor
@@ -26,8 +31,6 @@ export default function WelcomeCard() {
             <WelcomeCardInfo data={data} key={idx} />
           ))}
         </div>
-
-        <Meta title="Card title" description="This is the description" />
       </Card>
     </div>
   )

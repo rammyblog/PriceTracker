@@ -19,6 +19,8 @@ function WelcomeCardInfo({ data }) {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        marginRight: "1rem",
+        marginBottom: "1rem",
       }}
     >
       <span

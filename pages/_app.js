@@ -13,9 +13,6 @@ import Head from "next/head"
 // })
 // Router.events.on("routeChangeComplete", () => NProgress.done())
 // Router.events.on("routeChangeError", () => NProgress.done())
-import "bootstrap/dist/css/bootstrap.min.css"
-
-import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css"
 
 class MyApp extends App {
   //   componentDidMount() {

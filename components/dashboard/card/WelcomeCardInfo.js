@@ -1,4 +1,5 @@
 import React from "react"
+import { numberWithCommas } from "../../utlis"
 
 function WelcomeCardInfo({ data }) {
   const { number, text, variant } = data
@@ -21,6 +22,7 @@ function WelcomeCardInfo({ data }) {
         justifyContent: "center",
         marginRight: "1rem",
         marginBottom: "1rem",
+        flexWrap: "wrap",
       }}
     >
       <span
@@ -32,7 +34,7 @@ function WelcomeCardInfo({ data }) {
           marginRight: "1rem",
         }}
       >
-        {number}
+        {numberWithCommas(number)}
       </span>
       <span
         style={{

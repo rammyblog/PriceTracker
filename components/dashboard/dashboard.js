@@ -11,6 +11,7 @@ import EditableTable from "./table/DataTable"
 import DashboardContextHOC from "./DashboardContextHOC"
 import DataTables from "./table/Table"
 import WelcomeCard from "./card/WelcomeCard"
+import ItemCard from "./card/ItemCard"
 
 function DashboardLayout() {
   const { Header, Content, Footer, Sider } = Layout
@@ -54,6 +55,7 @@ function DashboardLayout() {
               style={{ padding: 24, minHeight: 360 }}
             >
               <WelcomeCard />
+              {/* <ItemCard /> */}
               <DataTables />
             </div>
           </Content>

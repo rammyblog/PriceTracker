@@ -4,6 +4,9 @@ import DataTable from "react-data-table-component"
 import "./DataTable.less"
 import CustomLoader from "../../common/CustomLoader"
 
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons"
+import ItemCard from "../card/ItemCard"
+
 const CustomTitle = ({ data, row }) => (
   <>
     <div className="title-url-row">
@@ -22,7 +25,7 @@ function DataTables() {
       selector: "title",
       sortable: true,
       // wrap: true,
-      minWidth: "3rem",
+      minWidth: "5rem",
       cell: (row) => <CustomTitle row={row} />,
     },
 
@@ -36,18 +39,26 @@ function DataTables() {
       selector: "last_price",
       wrap: true,
     },
+    // {
+    //   cell: (row) => <CustomModificationActions row={row} />,
+    //   ignoreRowClick: true,
+    //   button: true,
+    //   wrap: true,
+    //   selector: "id",
+    // },
   ]
 
   return (
     <>
       {itemData ? (
-        <DataTable
-          title="Your product catalog"
-          columns={columns}
-          data={itemData}
-          responsive={true}
-          // overflowY={false}
-        />
+        // <DataTable
+        //   title="Your product catalog"
+        //   columns={columns}
+        //   data={itemData}
+        //   responsive={true}
+        //   // overflowY={false}
+        // />
+        itemData.map((data, idx) => <ItemCard key={idx} data={data} />)
       ) : (
         <CustomLoader />
       )}

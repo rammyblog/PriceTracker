@@ -1,7 +1,5 @@
 import { Skeleton, Switch, Card, Avatar } from "antd"
 import "./WelcomeCard.less"
-const { Meta } = Card
-
 import React from "react"
 import WelcomeCardInfo from "./WelcomeCardInfo"
 import Pill from "../../common/Pill"

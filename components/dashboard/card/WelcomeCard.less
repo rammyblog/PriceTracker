@@ -5,6 +5,10 @@
     flex-wrap: wrap;
 }
 
+.single-card-container {
+    margin: 1rem 0;
+}
+
 .ant-card {
     background: #FFFFFF;
 
@@ -43,10 +47,24 @@
     justify-content: space-between;
 }
 
+.price-card-container {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(50px, 250px));
+    width: 60%;
+    margin-top: 1rem
+}
+
 
 @media screen and (max-width: 800px) {
     .info-card {
         width: 100%;
+    }
+
+    .welcome-text {
+        font-size: 1rem;
+        padding-right: 0.75rem;
     }
 
     .card-user-info-container {
@@ -55,5 +73,14 @@
 
     .welcome-text-muted {
         width: 100%;
+    }
+
+    .price-card-container {
+        width: 100%;
+        margin-top: 1rem;
+
+        .ant-statistic-content {
+            font-size: 1.3rem;
+        }
     }
 }

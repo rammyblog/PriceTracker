@@ -70,8 +70,14 @@ export const TrackerProvider = ({ children }) => {
     }
   }
 
+  const getSingleItem = (id) => {
+    return state.data.slice().filter((item) => item.id == id)
+  }
+
   return (
-    <TrackerContext.Provider value={{ state, deleteItem, createItem }}>
+    <TrackerContext.Provider
+      value={{ state, deleteItem, createItem, getSingleItem }}
+    >
       {children}
     </TrackerContext.Provider>
   )

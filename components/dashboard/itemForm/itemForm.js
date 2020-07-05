@@ -19,6 +19,14 @@ const ItemForm = ({ visible, onCreate, onCancel, mode, initialData }) => {
   const handleClose = () => {
     console.log("ee")
   }
+
+  const setInitialdata = () => {
+    if (mode && initialData) {
+      console.log({ initialData })
+
+      return initialData[0]
+    }
+  }
   return (
     <Modal
       visible={visible}
@@ -56,9 +64,7 @@ const ItemForm = ({ visible, onCreate, onCancel, mode, initialData }) => {
         form={form}
         layout="vertical"
         name="form_in_modal"
-        // initialValues={{
-        //   modifier: "public",
-        // }}
+        initialValues={() => setInitialdata()}
       >
         <Form.Item
           name="url"

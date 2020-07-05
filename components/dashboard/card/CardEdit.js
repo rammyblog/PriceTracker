@@ -1,14 +1,20 @@
-import react, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons"
 import "./CardEdit.less"
 import { TrackerContext } from "../../../context/tracker/trackerContext"
 import { Popconfirm, Button } from "antd"
 import { QuestionCircleOutlined } from "@ant-design/icons"
+import ItemForm from "../itemForm/itemForm"
+// import ItemForm from "./itemForm"
 
 const CardEdit = ({ id, mode }) => {
-  const { deleteItem } = useContext(TrackerContext)
+  const [modalVisible, setmodalVisible] = useState(false)
+  const [editData, seteditData] = useState(null)
+
+  const { deleteItem, getSingleItem } = useContext(TrackerContext)
   const handleEditClick = (id) => {
-    console.log(id)
+    seteditData(getSingleItem(id))
+    setmodalVisible(true)
 
     console.log("edit")
   }
@@ -38,6 +44,15 @@ const CardEdit = ({ id, mode }) => {
             <DeleteOutlined className="delete-icon" />
           </Popconfirm>
         )}
+        <ItemForm
+          visible={modalVisible}
+          // onCreate={onCreate}
+          onCancel={() => {
+            setmodalVisible(false)
+          }}
+          mode="edit"
+          initialData={editData}
+        />
       </div>
     </>
   )

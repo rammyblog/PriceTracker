@@ -13,6 +13,8 @@ export const TrackerReducer = (state, action) => {
       return {
         ...state,
         loading: true,
+        error: false,
+        errResponse: null,
       }
 
     case types.TRACKER_SUCCESS:
@@ -44,6 +46,13 @@ export const TrackerReducer = (state, action) => {
       return {
         ...state,
         data: tempData,
+      }
+
+    case types.ITEM_CREATE:
+      return {
+        ...state,
+        data: [...state.data, action.payload],
+        loading: false,
       }
 
     default:

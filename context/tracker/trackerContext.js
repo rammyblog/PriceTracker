@@ -33,15 +33,15 @@ export const TrackerProvider = ({ children }) => {
   }, [])
 
   const deleteItem = async (id) => {
-    try {
-      const res = await priceTrackerApi.delete(`api/items/${id}`)
-      console.log(res)
-    } catch (error) {
-      dispatch({
-        type: types.TRACKER_FAILURE,
-        payload: "An error occured",
-      })
-    }
+    // try {
+    //   const res = await priceTrackerApi.delete(`api/items/${id}`)
+    //   console.log(res)
+    // } catch (error) {
+    //   dispatch({
+    //     type: types.TRACKER_FAILURE,
+    //     payload: "An error occured",
+    //   })
+    // }
 
     dispatch({
       type: types.ITEM_DELETE,
@@ -49,8 +49,29 @@ export const TrackerProvider = ({ children }) => {
     })
   }
 
+  const createItem = async (data) => {
+    try {
+      dispatch({
+        type: types.TRACKER_START,
+      })
+      const res = await priceTrackerApi.post(`api/items/`, data)
+      console.log(res)
+      dispatch({
+        type: types.ITEM_CREATE,
+        payload: res.data,
+      })
+    } catch (error) {
+      console.log({ error })
+
+      dispatch({
+        type: types.TRACKER_FAILURE,
+        payload: error.response.data || "An error occured",
+      })
+    }
+  }
+
   return (
-    <TrackerContext.Provider value={{ state, deleteItem }}>
+    <TrackerContext.Provider value={{ state, deleteItem, createItem }}>
       {children}
     </TrackerContext.Provider>
   )

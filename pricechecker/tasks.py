@@ -4,7 +4,7 @@ from .models import Item
 from .utils import CrawlData
 
 
-def get_item_data( url, store):
+def get_item_data(url, store):
     crawl = CrawlData()
     if store == 'KO':
         return crawl.crawl_konga(url)
@@ -16,14 +16,14 @@ def get_item_data( url, store):
 def track_for_discount():
     items = Item.objects.all()
 
-
     for item in items:
 
-
-        #crawl item url
+        # crawl item url
         data = get_item_data(item.url, item.store)
+        last_price = data['last_price'].replace(',', '')
+        requested_price = item.requested_price
 
-        if int(data['last_price']) <= item.requested_price:
+        if int(last_price) <= requested_price:
             print(f'Discount for {data["title"]}')
             # update discount field to notify user
             item_discount = Item.objects.get(id=item.id)
@@ -31,15 +31,17 @@ def track_for_discount():
             item_discount.save()
 
 
-
 @shared_task
 def track_for_not_discount():
     items = Item.objects.all()
-    
+
     for item in items:
         data = crawl_data(item.url)
 
-        if data["last_price"] > item.requested_price:
+        last_price = data['last_price'].replace(',', '')
+        requested_price = item.requested_price
+
+        if int(last_price) <= requested_price:
             print(f'Discount finished for {data["title"]}')
             item_discount_finished = Item.objects.get(id=item.id)
             item_discount_finished.discount_price = "No discount yet"

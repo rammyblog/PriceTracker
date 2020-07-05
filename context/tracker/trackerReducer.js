@@ -37,6 +37,15 @@ export const TrackerReducer = (state, action) => {
         errResponse: "",
       }
 
+    case types.ITEM_DELETE:
+      const tempData = state.data
+        .slice()
+        .filter((data) => data.id !== action.payload)
+      return {
+        ...state,
+        data: tempData,
+      }
+
     default:
       return state
   }

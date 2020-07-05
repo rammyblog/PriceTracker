@@ -39,7 +39,7 @@ export default function ItemCard({ data }) {
             <a className="welcome-text" href={url}>
               {title}
             </a>
-            <CardEdit id={id} />
+            <CardEdit id={id} mode="delete" />
           </div>
 
           {/* <span className="welcome-text-muted">
@@ -59,7 +59,10 @@ export default function ItemCard({ data }) {
         <p className="ant-statistic-title">
           Updated: {formatTime(new Date(updated_at).getTime())}
         </p>
-        <Pill text={"Jumia"} />
+        <div style={{ display: "flex" }}>
+          <Pill text={"Jumia"} />
+          <CardEdit id={id} mode="edit" />
+        </div>
       </Card>
     </div>
   )

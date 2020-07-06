@@ -50,6 +50,10 @@ const ItemForm = ({ visible, onCreate, onCancel, mode, initialData }) => {
     onCreate()
   }
 
+  const handleClose = () => {
+    trackerReset()
+  }
+
   // export function numberWithCommas(number) {
   //   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
   // }

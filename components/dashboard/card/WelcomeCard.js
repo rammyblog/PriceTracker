@@ -21,7 +21,9 @@ export default function WelcomeCard({ data }) {
       <Card>
         <div className="card-user-info-container">
           <div className="welcome__details__pill">
-            <p className="welcome-text">Welcome, {toTitleCase(username)} </p>
+            <p className="welcome-text">
+              Welcome, {username ? toTitleCase(username) : null}{" "}
+            </p>
             <Pill text={"Tracker Info"} />
           </div>
 

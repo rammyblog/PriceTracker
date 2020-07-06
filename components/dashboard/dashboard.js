@@ -18,7 +18,7 @@ function DashboardLayout() {
   const { Header, Content, Footer, Sider } = Layout
   return (
     <>
-      <Layout>
+      {/* <Layout>
         <Sider
           breakpoint="lg"
           collapsedWidth="0"
@@ -56,13 +56,22 @@ function DashboardLayout() {
               style={{ padding: 24, minHeight: 360 }}
             >
               <WelcomeCard />
-              {/* <ItemCard /> */}
               <CreateItemButton />
               <DataTables />
             </div>
           </Content>
         </Layout>
-      </Layout>
+      </Layout> */}
+
+      <div
+        className="site-layout-background"
+        style={{ padding: 24, minHeight: 360 }}
+      >
+        <WelcomeCard />
+        {/* <ItemCard /> */}
+        <CreateItemButton />
+        <DataTables />
+      </div>
     </>
   )
 }

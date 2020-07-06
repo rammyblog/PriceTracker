@@ -10,7 +10,7 @@ const CreateItemButton = () => {
   }
 
   return (
-    <div>
+    <div style={{ float: "right", margin: "1rem 0" }}>
       <Button
         type="primary"
         onClick={() => {

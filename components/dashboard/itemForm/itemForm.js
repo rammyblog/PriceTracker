@@ -44,7 +44,7 @@ const ItemForm = ({ visible, onCreate, onCancel, mode, initialData }) => {
     }
   }
 
-  const handleClose = () => {
+  const handleCloseForm = () => {
     trackerReset()
     console.log("on close")
     onCreate()
@@ -73,7 +73,7 @@ const ItemForm = ({ visible, onCreate, onCancel, mode, initialData }) => {
       okText={mode === "edit" ? "Edit" : "Create"}
       destroyOnClose
       cancelText="Cancel"
-      onCancel={handleClose}
+      onCancel={handleCloseForm}
       onOk={() => {
         form
           .validateFields()

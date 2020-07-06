@@ -6,6 +6,7 @@
 }
 .single-card-container {
   margin: 1rem 0;
+  clear: both;
 }
 .ant-card {
   background: #FFFFFF;

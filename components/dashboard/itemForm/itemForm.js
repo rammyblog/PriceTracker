@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react"
+import React, { useContext } from "react"
 import { InputNumber, Modal, Form, Input, Alert } from "antd"
 import { TrackerContext } from "../../../context/tracker/trackerContext"
 
@@ -132,11 +132,11 @@ const ItemForm = ({ visible, onCreate, onCancel, mode, initialData }) => {
           ]}
         >
           <InputNumber
+            defaultValue={0}
             formatter={(value) =>
               `₦ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
             }
             parser={(value) => value.replace(/\₦\s?|(,*)/g, "")}
-            min={10}
             style={{ width: "100%" }}
           />
         </Form.Item>

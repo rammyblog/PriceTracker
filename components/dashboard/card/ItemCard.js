@@ -1,15 +1,11 @@
 import React from "react"
 import { Card } from "antd"
 import Pill from "../../common/Pill"
-import "./WelcomeCard.less"
 import ItemPriceInfo from "./ItemPriceInfo"
 import { formatTime } from "../../utlis"
 import CardEdit from "./CardEdit"
-const cardBoxInfo = [
-  { number: 5000333, text: "Requested Price", variant: "primary" },
-  { number: 200033, text: "Last Price Updated", variant: "success" },
-  //   { number: 333333, text: "Ghost Users", variant: "info" },
-]
+import "./WelcomeCard.less"
+
 export default function ItemCard({ data }) {
   const formatStore = (storeArc) => {
     if (storeArc === "JM") {

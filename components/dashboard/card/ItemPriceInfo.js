@@ -1,5 +1,5 @@
 import React from "react"
-import { Statistic, Row, Col } from "antd"
+import { Statistic } from "antd"
 
 function ItemPriceInfo({ data }) {
   const { text, number } = data

@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react"
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons"
-import "./CardEdit.less"
 import { TrackerContext } from "../../../context/tracker/trackerContext"
-import { Popconfirm, Button } from "antd"
+import { Popconfirm } from "antd"
 import { QuestionCircleOutlined } from "@ant-design/icons"
 import ItemForm from "../itemForm/itemForm"
+import "./CardEdit.less"
 // import ItemForm from "./itemForm"
 
 const CardEdit = ({ id, mode }) => {
@@ -19,9 +19,6 @@ const CardEdit = ({ id, mode }) => {
   }
 
   const onCreate = () => {
-    // if () {
-
-    // }
     setmodalVisible(false)
   }
 

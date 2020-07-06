@@ -40,20 +40,19 @@ export const TrackerProvider = ({ children }) => {
   }, [])
 
   const deleteItem = async (id) => {
-    // try {
-    //   const res = await priceTrackerApi.delete(`api/items/${id}`)
-    //   console.log(res)
-    // } catch (error) {
-    //   dispatch({
-    //     type: types.TRACKER_FAILURE,
-    //     payload: "An error occured",
-    //   })
-    // }
-
     dispatch({
       type: types.ITEM_DELETE,
       payload: id,
     })
+    try {
+      const res = await priceTrackerApi.delete(`api/items/${id}`)
+      console.log(res)
+    } catch (error) {
+      dispatch({
+        type: types.TRACKER_FAILURE,
+        payload: "An error occured",
+      })
+    }
   }
 
   const createItem = async (data) => {

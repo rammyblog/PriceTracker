@@ -14,6 +14,14 @@ const AuthReducer = (state, action) => {
         loading: false,
         token: action.payload,
       }
+    case types.GET_USER:
+      return {
+        ...state,
+        loading: false,
+        data: action.payload,
+        error: false,
+        errResponse: "",
+      }
 
     case types.AUTH_FAILURE:
       return {

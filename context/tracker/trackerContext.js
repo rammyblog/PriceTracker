@@ -1,7 +1,14 @@
-import { createContext, useReducer, useCallback, useEffect } from "react"
+import {
+  createContext,
+  useReducer,
+  useCallback,
+  useEffect,
+  useContext,
+} from "react"
 import priceTrackerApi from "../../api/apiUtils"
 import * as types from "./trackerTypes"
 import { TrackerReducer, initalTrackerState } from "./trackerReducer"
+import { AuthContext } from "../auth/authContext"
 
 export const TrackerContext = createContext(initalTrackerState)
 

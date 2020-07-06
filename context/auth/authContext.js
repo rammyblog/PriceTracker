@@ -81,9 +81,26 @@ export const AuthProvider = ({ children }) => {
       type: types.AUTH_RESET,
     })
 
-  //   useEffect(() => {
-  //     loginUser("NG")
-  //   }, [fetchStats])
+  const getUser = useCallback(async () => {
+    try {
+      dispatch({
+        type: types.AUTH_START,
+      })
+
+      let res = await priceTrackerApi.get(`api/user/`)
+
+      dispatch({
+        type: types.GET_USER,
+        payload: res.data,
+      })
+    } catch (e) {
+      dispatch({
+        type: types.AUTH_FAILURE,
+        payload: e.response.data.error_msg || "An error occured",
+      })
+      console.log(e.response.data)
+    }
+  }, [dispatch])
 
   return (
     <AuthContext.Provider
@@ -92,6 +109,7 @@ export const AuthProvider = ({ children }) => {
         loginUser,
         authReset,
         registerUser,
+        getUser,
       }}
     >
       {children}

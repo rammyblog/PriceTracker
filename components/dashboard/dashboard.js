@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useContext } from "react"
 import { Layout, Menu } from "antd"
 import {
   UploadOutlined,
@@ -13,9 +13,16 @@ import DataTables from "./table/Table"
 import WelcomeCard from "./card/WelcomeCard"
 import ItemCard from "./card/ItemCard"
 import CreateItemButton from "./itemForm/ItemFormButton"
+import { AuthContext } from "../../context/auth/authContext"
 
 function DashboardLayout() {
-  const { Header, Content, Footer, Sider } = Layout
+  const { getUser, state } = useContext(AuthContext)
+  const { data } = state
+  // console.log(getUser)
+
+  useEffect(() => {
+    getUser()
+  }, [])
   return (
     <>
       {/* <Layout>
@@ -67,7 +74,7 @@ function DashboardLayout() {
         className="site-layout-background"
         style={{ padding: 24, minHeight: 360 }}
       >
-        <WelcomeCard />
+        <WelcomeCard data={data} />
         {/* <ItemCard /> */}
         <CreateItemButton />
         <DataTables />

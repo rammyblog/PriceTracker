@@ -9,6 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 from rest_auth.serializers import PasswordResetSerializer, LoginSerializer
 from .mixins import CustomErrorSerializer
 from rest_auth.registration.serializers import RegisterSerializer
+from django.core.exceptions import ValidationError
 
 
 class RegisterSerializer(CustomErrorSerializer, RegisterSerializer):
@@ -53,20 +54,18 @@ class ItemSerializer(CustomErrorSerializer, serializers.ModelSerializer):
         obj['last_price'] = crawled_data['last_price']
         return Item.objects.create(**obj)
 
-    def update(self, obj):
-        crawled_data = self.get_item_data(obj['url'], obj['store'])
-        obj['title'] = crawled_data['title']
-        obj['last_price'] = crawled_data['last_price']
-        return Item.objects.create(**obj)
-
     def update(self, instance, validated_data):
         url = validated_data.get('url', instance.url)
         if(url != instance.url):
-            if Item.objects.filter(url=obj['url']).exists():
+            if Item.objects.filter(url=url).exists():
                 raise serializers.ValidationError(
                     'Oppss, This url already exists, Kindly edit it to make any changes')
-            crawled_data = self.get_item_data(
-                url,  validated_data.get('store', instance.store))
+            try:
+                crawled_data = self.get_item_data(
+                    url,  validated_data.get('store', instance.store))
+            except ValidationError as err:
+                # print(err)
+                raise serializers.ValidationError(err)
             instance.title = crawled_data['title']
             instance.last_price = crawled_data['last_price']
             instance.url = url

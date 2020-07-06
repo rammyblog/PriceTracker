@@ -1,21 +1,22 @@
 
 from urllib.request import urlopen, Request
 from bs4 import BeautifulSoup
+from django.core.exceptions import ValidationError
 
 
 class CrawlData:
-    
+
     # def __init__(self):
     def load_url(self, url):
-        
+
         # User Agent is to prevent 403 Forbidden Error
         req = Request(url, headers={
-            'User-Agent':'Mozilla/5.0'
+            'User-Agent': 'Mozilla/5.0'
         })
         html = urlopen(req).read()
         bs = BeautifulSoup(html, 'html.parser')
         # print( bs.find('input', type='hidden').get_text())
-        
+
         return bs
 
         # title = bs.find('h1', id='itemTitle').get_text().replace("Details about", "")
@@ -25,42 +26,43 @@ class CrawlData:
         #     'title':title,
         #     'last_price': clean_price
         # }
-        
+
     def crawl_konga(self, url):
         document = self.load_url(url)
 
         try:
-            price = document.find("input", {'name': 'product_price'}).get('value')
+            price = document.find(
+                "input", {'name': 'product_price'}).get('value')
             title = document.find("title").get_text().split('|')[0]
-            
+
         except:
-            price = '0'
-            title = 'Not Found'
-        
-        
+            raise ValidationError(
+                'An error occured. Double check the URL and ensure it leads to the product page')
+
+            # price = '0'
+            # title = 'Not Found'
+
         return {
-            'title':title,
+            'title': title,
             'last_price': price
         }
-        
-        
+
     def crawl_jumia(self, url):
         document = self.load_url(url)
-        
         try:
-                
-            price = document.find("span", {'class': "-b -ltr -tal -fs24"}).get_text().replace("₦", "").strip()
+            price = document.find(
+                "span", {'class': "-b -ltr -tal -fs24"}).get_text().replace("₦", "").strip()
             title = document.find("title").get_text().split('|')[0]
         except:
-            price = '0'
-            title = 'Not Found'
+            raise ValidationError(
+                'An error occured. Double check the URL and ensure it leads to the product page')
+            # price = '0'
+            # title = 'Not Found'
         return {
-            'title':title,
+            'title': title,
             'last_price': price
         }
-        
-        
-        
+
 
 # crawl_data('https://www.konga.com/product/slim-regular-jeans-for-men-blue-3538616')
 # # product_price

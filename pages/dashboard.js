@@ -1,5 +1,6 @@
 import React from "react"
 import DashboardLayout from "../components/dashboard/dashboard"
+import { PrivateRoute } from "../containers/PrivateRoutes"
 
 function dashboard() {
   return (
@@ -9,4 +10,4 @@ function dashboard() {
   )
 }
 
-export default dashboard
+export default PrivateRoute(dashboard)

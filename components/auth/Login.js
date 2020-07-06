@@ -6,6 +6,7 @@ import { Form, Input, Button, Alert, Spin } from "antd"
 import { UserOutlined, LockOutlined, LoadingOutlined } from "@ant-design/icons"
 import { Typography } from "antd"
 import Link from "next/link"
+import Router from "next/router"
 function LoginForm() {
   const { Title, Text } = Typography
   const [form] = Form.useForm()
@@ -17,9 +18,15 @@ function LoginForm() {
   const { loginUser, state, authReset } = useContext(AuthContext)
   const { loading, token, error, errResponse } = state
 
-  const onFinish = (values) => {
+  useEffect(() => {
+    if (token) {
+      console.log("ddk")
+      Router.push("/dashboard")
+    }
+  }, [token])
+  const onFinish = async (values) => {
     console.log("Success:", values)
-    loginUser(values)
+    await loginUser(values)
   }
 
   const onFinishFailed = (errorInfo) => {

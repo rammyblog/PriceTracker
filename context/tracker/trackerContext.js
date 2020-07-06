@@ -60,6 +60,7 @@ export const TrackerProvider = ({ children }) => {
         type: types.ITEM_CREATE,
         payload: res.data,
       })
+      return true
     } catch (error) {
       console.log({ error })
 
@@ -67,6 +68,7 @@ export const TrackerProvider = ({ children }) => {
         type: types.TRACKER_FAILURE,
         payload: error.response.data || "An error occured",
       })
+      return false
     }
   }
 
@@ -81,6 +83,7 @@ export const TrackerProvider = ({ children }) => {
         type: types.ITEM_EDIT,
         payload: res.data,
       })
+      return true
     } catch (error) {
       console.log({ error })
 
@@ -88,6 +91,7 @@ export const TrackerProvider = ({ children }) => {
         type: types.TRACKER_FAILURE,
         payload: error.response.data || "An error occured",
       })
+      return false
     }
   }
 
@@ -95,9 +99,22 @@ export const TrackerProvider = ({ children }) => {
     return state.data.slice().filter((item) => item.id == id)
   }
 
+  const trackerReset = () => {
+    dispatch({
+      type: types.TRACKER_RESET,
+    })
+  }
+
   return (
     <TrackerContext.Provider
-      value={{ state, deleteItem, createItem, getSingleItem, editItem }}
+      value={{
+        state,
+        deleteItem,
+        createItem,
+        getSingleItem,
+        editItem,
+        trackerReset,
+      }}
     >
       {children}
     </TrackerContext.Provider>

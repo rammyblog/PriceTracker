@@ -131,12 +131,13 @@ const ItemForm = ({ visible, onCreate, onCancel, mode, initialData }) => {
             },
           ]}
         >
-          <InputNumber
-            defaultValue={0}
-            formatter={(value) =>
-              `₦ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-            }
-            parser={(value) => value.replace(/\₦\s?|(,*)/g, "")}
+          <Input
+            type="number"
+            prefix="N"
+            // formatter={(value) =>
+            //   `₦ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            // }
+            // parser={(value) => value.replace(/\₦\s?|(,*)/g, "")}
             style={{ width: "100%" }}
           />
         </Form.Item>

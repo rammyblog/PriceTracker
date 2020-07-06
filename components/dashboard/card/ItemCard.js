@@ -11,6 +11,13 @@ const cardBoxInfo = [
   //   { number: 333333, text: "Ghost Users", variant: "info" },
 ]
 export default function ItemCard({ data }) {
+  const formatStore = (storeArc) => {
+    if (storeArc === "JM") {
+      return "Jumia"
+    }
+
+    return "Konga"
+  }
   const {
     id,
     title,
@@ -49,18 +56,25 @@ export default function ItemCard({ data }) {
         </div>
 
         <div className="price-card-container">
+          <ItemPriceInfo
+            data={{ number: requested_price, text: "Requested Price" }}
+          />
+          <ItemPriceInfo
+            data={{ number: last_price, text: "Last Price Updated" }}
+          />
+          {/* 
           {cardBoxInfo.map((data, idx) => (
             <>
-              <ItemPriceInfo data={data} key={idx} />
+              <ItemPriceInfo text={data.text} number={} key={idx} />
             </>
-          ))}
+          ))} */}
         </div>
 
         <p className="ant-statistic-title">
           Updated: {formatTime(new Date(updated_at).getTime())}
         </p>
         <div style={{ display: "flex" }}>
-          <Pill text={"Jumia"} />
+          <Pill text={formatStore(store)} />
           <CardEdit id={id} mode="edit" />
         </div>
       </Card>

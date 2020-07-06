@@ -8,6 +8,7 @@ const initialAuthState = {
   loading: false,
   token: "",
   error: false,
+  data: "",
   errResponse: "",
 }
 

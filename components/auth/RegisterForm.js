@@ -12,6 +12,7 @@ import {
 import Link from "next/link"
 
 import { Typography } from "antd"
+import Router from "next/router"
 
 function RegisterForm() {
   const { Title, Text } = Typography
@@ -23,6 +24,13 @@ function RegisterForm() {
 
   const { loginUser, state, authReset, registerUser } = useContext(AuthContext)
   const { loading, token, error, errResponse } = state
+
+  useEffect(() => {
+    if (token) {
+      console.log("ddk")
+      Router.push("/dashboard")
+    }
+  }, [token])
 
   const onFinish = (values) => {
     console.log("Success:", values)

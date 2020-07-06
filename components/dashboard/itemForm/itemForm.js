@@ -137,10 +137,8 @@ const ItemForm = ({ visible, onCreate, onCancel, mode, initialData }) => {
             }
             parser={(value) => value.replace(/\₦\s?|(,*)/g, "")}
             min={10}
-            defaultValue={3}
             style={{ width: "100%" }}
           />
-          {/* <Input type="number" /> */}
         </Form.Item>
       </Form>
     </Modal>

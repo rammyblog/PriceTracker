@@ -60,11 +60,17 @@ export const TrackerReducer = (state, action) => {
         errResponse: "",
       }
 
-    // case types.ITEM_GET_SINGLE:
-    //   return{
-    //     ...state,
-
-    //   }
+    case types.ITEM_EDIT:
+      const tempState = state.data
+        .slice()
+        .filter((data) => data.id !== action.payload.id)
+      return {
+        ...state,
+        data: [...tempState, action.payload],
+        loading: false,
+        error: false,
+        errResponse: "",
+      }
 
     default:
       return state

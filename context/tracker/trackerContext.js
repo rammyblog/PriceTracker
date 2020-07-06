@@ -70,13 +70,34 @@ export const TrackerProvider = ({ children }) => {
     }
   }
 
+  const editItem = async (id, data) => {
+    try {
+      dispatch({
+        type: types.TRACKER_START,
+      })
+      const res = await priceTrackerApi.patch(`api/items/${id}/`, data)
+      console.log(res)
+      dispatch({
+        type: types.ITEM_EDIT,
+        payload: res.data,
+      })
+    } catch (error) {
+      console.log({ error })
+
+      dispatch({
+        type: types.TRACKER_FAILURE,
+        payload: error.response.data || "An error occured",
+      })
+    }
+  }
+
   const getSingleItem = (id) => {
     return state.data.slice().filter((item) => item.id == id)
   }
 
   return (
     <TrackerContext.Provider
-      value={{ state, deleteItem, createItem, getSingleItem }}
+      value={{ state, deleteItem, createItem, getSingleItem, editItem }}
     >
       {children}
     </TrackerContext.Provider>

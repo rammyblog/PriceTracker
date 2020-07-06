@@ -5,15 +5,33 @@ import { TrackerContext } from "../../../context/tracker/trackerContext"
 const ItemForm = ({ visible, onCreate, onCancel, mode, initialData }) => {
   const [form] = Form.useForm()
 
-  const { createItem, state } = useContext(TrackerContext)
+  const { createItem, state, editItem } = useContext(TrackerContext)
 
   const handleCreateItem = (values) => {
+    if (mode === "edit") {
+      return handleEditItem(values)
+    }
+
     if (values.url.includes("jumia")) {
       values.store = "JM"
     } else {
       values.store = "KO"
     }
+
     createItem(values)
+    // onCreate()
+  }
+
+  const handleEditItem = (values) => {
+    const id = initialData.id
+
+    if (values.url.includes("jumia")) {
+      values.store = "JM"
+    } else {
+      values.store = "KO"
+    }
+    editItem(id, values)
+    // onCreate()
   }
 
   const handleClose = () => {
@@ -33,7 +51,7 @@ const ItemForm = ({ visible, onCreate, onCancel, mode, initialData }) => {
       title="Create a new Item"
       confirmLoading={state.loading}
       okText="Create"
-      destroyOnClose
+      // destroyOnClose
       cancelText="Cancel"
       onCancel={onCancel}
       onOk={() => {
@@ -42,7 +60,7 @@ const ItemForm = ({ visible, onCreate, onCancel, mode, initialData }) => {
           .then((values) => {
             // form.resetFields()
             handleCreateItem(values)
-            // onCreate(values)
+            onCreate()
           })
           .catch((info) => {
             console.log("Validate Failed:", info)
@@ -64,7 +82,7 @@ const ItemForm = ({ visible, onCreate, onCancel, mode, initialData }) => {
         form={form}
         layout="vertical"
         name="form_in_modal"
-        initialValues={() => setInitialdata()}
+        initialValues={initialData}
       >
         <Form.Item
           name="url"

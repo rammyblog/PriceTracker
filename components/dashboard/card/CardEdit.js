@@ -11,18 +11,25 @@ const CardEdit = ({ id, mode }) => {
   const [modalVisible, setmodalVisible] = useState(false)
   const [editData, seteditData] = useState(null)
 
-  const { deleteItem, getSingleItem } = useContext(TrackerContext)
+  const { deleteItem, getSingleItem, state } = useContext(TrackerContext)
   const handleEditClick = (id) => {
-    seteditData(getSingleItem(id))
+    seteditData(getSingleItem(id)[0])
     setmodalVisible(true)
-
     console.log("edit")
+  }
+
+  const onCreate = () => {
+    // if () {
+
+    // }
+    setmodalVisible(false)
   }
 
   const handleDeleteClick = (id) => {
     console.log("delete")
     deleteItem(id)
   }
+
   return (
     <>
       <div className="edit-icons">
@@ -44,15 +51,17 @@ const CardEdit = ({ id, mode }) => {
             <DeleteOutlined className="delete-icon" />
           </Popconfirm>
         )}
-        <ItemForm
-          visible={modalVisible}
-          // onCreate={onCreate}
-          onCancel={() => {
-            setmodalVisible(false)
-          }}
-          mode="edit"
-          initialData={editData}
-        />
+        {modalVisible ? (
+          <ItemForm
+            visible={modalVisible}
+            onCreate={onCreate}
+            onCancel={() => {
+              setmodalVisible(false)
+            }}
+            mode="edit"
+            initialData={editData}
+          />
+        ) : null}
       </div>
     </>
   )

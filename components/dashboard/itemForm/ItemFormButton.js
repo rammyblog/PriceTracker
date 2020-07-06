@@ -5,8 +5,7 @@ import ItemForm from "./itemForm"
 const CreateItemButton = () => {
   const [visible, setVisible] = useState(false)
 
-  const onCreate = (values) => {
-    console.log("Received values of form: ", values)
+  const onCreate = () => {
     setVisible(false)
   }
 

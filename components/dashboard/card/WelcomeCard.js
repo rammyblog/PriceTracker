@@ -15,7 +15,9 @@ function toTitleCase(str) {
   })
 }
 export default function WelcomeCard({ data }) {
-  const { email, first_name, username } = data
+  // if (data) {
+  const { username } = data
+
   return (
     <div>
       <Card>

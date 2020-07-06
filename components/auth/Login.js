@@ -20,18 +20,14 @@ function LoginForm() {
 
   useEffect(() => {
     if (token) {
-      console.log("ddk")
       Router.push("/dashboard")
     }
   }, [token])
   const onFinish = async (values) => {
-    console.log("Success:", values)
     await loginUser(values)
   }
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo)
-  }
+  const onFinishFailed = (errorInfo) => {}
   const onClose = () => {
     authReset()
   }

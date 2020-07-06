@@ -27,19 +27,15 @@ function RegisterForm() {
 
   useEffect(() => {
     if (token) {
-      console.log("ddk")
       Router.push("/dashboard")
     }
   }, [token])
 
   const onFinish = (values) => {
-    console.log("Success:", values)
     registerUser(values)
   }
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo)
-  }
+  const onFinishFailed = (errorInfo) => {}
   const onClose = () => {
     authReset()
   }

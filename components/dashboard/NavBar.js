@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect, useContext } from "react"
 import { Menu } from "antd"
 import {
   MailOutlined,
@@ -9,17 +9,32 @@ import {
   GithubOutlined,
   LogoutOutlined,
 } from "@ant-design/icons"
+import { AuthContext } from "../../context/auth/authContext"
+import Router from "next/router"
 
 const { SubMenu } = Menu
 
 export default function Navbar() {
   const [current, setcurrent] = useState("home")
+  const { authReset } = useContext(AuthContext)
 
   const handleClick = (e) => {
-    console.log("click ", e)
     setcurrent(e.key)
     // this.setState({ current: e.key })
   }
+
+  const logOut = () => {
+    localStorage.removeItem("priceTrackerToken")
+    localStorage.removeItem("expirationDate")
+    Router.push("/login")
+    // authReset()
+  }
+
+  useEffect(() => {
+    if (current === "logout") {
+      logOut()
+    }
+  }, [current])
 
   return (
     <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal">

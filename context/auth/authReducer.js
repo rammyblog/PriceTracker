@@ -36,6 +36,8 @@ const AuthReducer = (state, action) => {
         loading: false,
         error: false,
         errResponse: "",
+        token: null,
+        data: null,
       }
 
     default:

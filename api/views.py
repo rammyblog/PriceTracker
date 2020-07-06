@@ -10,15 +10,13 @@ class ItemViewSet(viewsets.ModelViewSet):
     """
     A simple ViewSet for listing or retrieving users.
     """
-    
+
     serializer_class = ItemSerializer
-    
 
     def get_queryset(self):
         print(self.request.user)
-        return Item.objects.filter(owner=self.request.user)
-    
-    
+        return Item.objects.filter(owner=self.request.user).order_by('-updated_at')
+
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 

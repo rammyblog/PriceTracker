@@ -23,6 +23,7 @@ const ItemForm = ({ visible, onCreate, onCancel, mode, initialData }) => {
 
     values.store = determineStore(values.url)
 
+    console.log({ values })
     if (await createItem(values)) {
       onCreate()
     }
@@ -44,9 +45,22 @@ const ItemForm = ({ visible, onCreate, onCancel, mode, initialData }) => {
   }
 
   const handleClose = () => {
-    console.log(trackerReset())
+    trackerReset()
     console.log("on close")
     onCreate()
+  }
+
+  // export function numberWithCommas(number) {
+  //   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+  // }
+
+  const handleChangeConversion = (event) => {
+    const regexp = /^[0-9]*\.?[0-9]*$/
+    const numberWithoutComma = event.target.value.replace(/\,/g, "")
+
+    if (event.target.value === "" || regexp.test(numberWithoutComma)) {
+      handleCurrencyAmountChange(numberWithCommas(numberWithoutComma))
+    }
   }
 
   return (
@@ -131,12 +145,13 @@ const ItemForm = ({ visible, onCreate, onCancel, mode, initialData }) => {
             },
           ]}
         >
-          <Input
-            type="number"
-            prefix="N"
-            // formatter={(value) =>
-            //   `₦ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-            // }
+          <InputNumber
+            // type="number"
+            min={10}
+            // prefix="N"
+            formatter={(value) =>
+              `₦ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            }
             // parser={(value) => value.replace(/\₦\s?|(,*)/g, "")}
             style={{ width: "100%" }}
           />

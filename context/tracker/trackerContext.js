@@ -25,13 +25,12 @@ export const TrackerProvider = ({ children }) => {
         type: types.TRACKER_SUCCESS,
         payload: res.data,
       })
-      console.log(res)
     } catch (e) {
       dispatch({
         type: types.TRACKER_FAILURE,
         payload: "An error occured",
       })
-      console.log({ e })
+      // console.log({ e })
     }
   }, [])
 
@@ -46,7 +45,7 @@ export const TrackerProvider = ({ children }) => {
     })
     try {
       const res = await priceTrackerApi.delete(`api/items/${id}`)
-      console.log(res)
+      // console.log(res)
     } catch (error) {
       dispatch({
         type: types.TRACKER_FAILURE,
@@ -61,14 +60,14 @@ export const TrackerProvider = ({ children }) => {
         type: types.TRACKER_START,
       })
       const res = await priceTrackerApi.post(`api/items/`, data)
-      console.log(res)
+      // console.log(res)
       dispatch({
         type: types.ITEM_CREATE,
         payload: res.data,
       })
       return true
     } catch (error) {
-      console.log({ error })
+      // console.log({ error })
 
       dispatch({
         type: types.TRACKER_FAILURE,
@@ -84,14 +83,14 @@ export const TrackerProvider = ({ children }) => {
         type: types.TRACKER_START,
       })
       const res = await priceTrackerApi.patch(`api/items/${id}/`, data)
-      console.log(res)
+      // console.log(res)
       dispatch({
         type: types.ITEM_EDIT,
         payload: res.data,
       })
       return true
     } catch (error) {
-      console.log({ error })
+      // console.log({ error })
 
       dispatch({
         type: types.TRACKER_FAILURE,

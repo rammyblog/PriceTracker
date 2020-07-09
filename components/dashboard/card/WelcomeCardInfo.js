@@ -2,7 +2,9 @@ import React from "react"
 import { numberWithCommas } from "../../utlis"
 
 function WelcomeCardInfo({ data }) {
-  const { number, text, variant } = data
+  // const { number, text, variant } = data
+  // console.log(data.length)
+
   const colorVariant = {
     primary: "#0050AF",
     success: "#00D67D",
@@ -29,12 +31,12 @@ function WelcomeCardInfo({ data }) {
         style={{
           fontSize: 36,
           lineHeight: "40px",
-          color: colorVariant[variant],
+          color: colorVariant["primary"],
           fontWeight: 600,
           marginRight: "1rem",
         }}
       >
-        {numberWithCommas(number)}
+        {data ? numberWithCommas(data.length) : 0}
       </span>
       <span
         style={{
@@ -44,7 +46,7 @@ function WelcomeCardInfo({ data }) {
           color: "#9DA8B6",
         }}
       >
-        {text}
+        Items Added
       </span>
     </div>
   )

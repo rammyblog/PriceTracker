@@ -1,8 +1,9 @@
 import { Skeleton, Switch, Card, Avatar } from "antd"
 import "./WelcomeCard.less"
-import React from "react"
+import React, { useContext } from "react"
 import WelcomeCardInfo from "./WelcomeCardInfo"
 import Pill from "../../common/Pill"
+import { TrackerContext } from "../../../context/tracker/trackerContext"
 const cardBoxInfo = [
   { number: 33, text: "Total Users", variant: "primary" },
   { number: 33, text: "Active Users", variant: "success" },
@@ -17,6 +18,9 @@ function toTitleCase(str) {
 export default function WelcomeCard({ data }) {
   // if (data) {
   const { username } = data
+  const { state } = useContext(TrackerContext)
+  const { data: allItems } = state
+  console.log(allItems)
 
   return (
     <div>
@@ -35,9 +39,9 @@ export default function WelcomeCard({ data }) {
         </div>
 
         <div className="info-card">
-          {cardBoxInfo.map((data, idx) => (
-            <WelcomeCardInfo data={data} key={idx} />
-          ))}
+          <WelcomeCardInfo data={allItems} />
+          {/* {cardBoxInfo.map((data, idx) => (
+          ))} */}
         </div>
       </Card>
     </div>

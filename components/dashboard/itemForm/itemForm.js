@@ -1,5 +1,5 @@
 import React, { useContext } from "react"
-import { InputNumber, Modal, Form, Input, Alert } from "antd"
+import { InputNumber, Modal, Form, Input, Alert, message } from "antd"
 import { TrackerContext } from "../../../context/tracker/trackerContext"
 
 const ItemForm = ({ visible, onCreate, onCancel, mode, initialData }) => {
@@ -25,6 +25,7 @@ const ItemForm = ({ visible, onCreate, onCancel, mode, initialData }) => {
 
     console.log({ values })
     if (await createItem(values)) {
+      message.success("Added item successfully")
       onCreate()
     }
   }
@@ -40,6 +41,8 @@ const ItemForm = ({ visible, onCreate, onCancel, mode, initialData }) => {
     values.store = determineStore(values.url)
 
     if (await editItem(id, values)) {
+      message.success("Edited item successfully")
+
       onCreate()
     }
   }
@@ -52,19 +55,6 @@ const ItemForm = ({ visible, onCreate, onCancel, mode, initialData }) => {
 
   const handleClose = () => {
     trackerReset()
-  }
-
-  // export function numberWithCommas(number) {
-  //   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-  // }
-
-  const handleChangeConversion = (event) => {
-    const regexp = /^[0-9]*\.?[0-9]*$/
-    const numberWithoutComma = event.target.value.replace(/\,/g, "")
-
-    if (event.target.value === "" || regexp.test(numberWithoutComma)) {
-      handleCurrencyAmountChange(numberWithCommas(numberWithoutComma))
-    }
   }
 
   return (
@@ -141,7 +131,7 @@ const ItemForm = ({ visible, onCreate, onCancel, mode, initialData }) => {
         </Form.Item>
         <Form.Item
           name="requested_price"
-          label="Requested price"
+          label="Tracking price"
           rules={[
             {
               required: true,

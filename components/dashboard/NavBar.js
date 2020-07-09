@@ -1,8 +1,6 @@
 import { useState, useEffect, useContext } from "react"
 import { Menu } from "antd"
 import {
-  MailOutlined,
-  AppstoreOutlined,
   SettingOutlined,
   HomeOutlined,
   InfoCircleOutlined,
@@ -11,14 +9,15 @@ import {
 } from "@ant-design/icons"
 import { AuthContext } from "../../context/auth/authContext"
 import Router from "next/router"
-
-const { SubMenu } = Menu
+import Link from "next/link"
 
 export default function Navbar() {
   const [current, setcurrent] = useState("home")
   const { authReset } = useContext(AuthContext)
 
   const handleClick = (e) => {
+    console.log(e.key)
+
     setcurrent(e.key)
     // this.setState({ current: e.key })
   }
@@ -37,23 +36,26 @@ export default function Navbar() {
   }, [current])
 
   return (
-    <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal">
+    <Menu onClick={handleClick} selectedKeys={current} mode="horizontal">
       <Menu.Item key="home" icon={<HomeOutlined />}>
-        Home
+        <Link href="/dashboard">
+          <a>Dashboard</a>
+        </Link>
       </Menu.Item>
-      <Menu.Item key="about" icon={<InfoCircleOutlined />}>
-        How To Use
+      <Menu.Item
+        onClick={handleClick}
+        key="about"
+        icon={<InfoCircleOutlined />}
+      >
+        <Link href="/about">
+          <a>How To Use</a>
+        </Link>
       </Menu.Item>
-      <SubMenu icon={<SettingOutlined />} title="Account Settings">
-        <Menu.ItemGroup title="Item 1">
-          <Menu.Item key="setting:1">Option 1</Menu.Item>
-          <Menu.Item key="setting:2">Option 2</Menu.Item>
-        </Menu.ItemGroup>
-        <Menu.ItemGroup title="Item 2">
-          <Menu.Item key="setting:3">Option 3</Menu.Item>
-          <Menu.Item key="setting:4">Option 4</Menu.Item>
-        </Menu.ItemGroup>
-      </SubMenu>
+      <Menu.Item
+        icon={<SettingOutlined />}
+        title="Account Settings"
+        disabled
+      ></Menu.Item>
       <Menu.Item key="github" icon={<GithubOutlined />}>
         <a
           href="https://github.com/rammyblog/PriceTracker"

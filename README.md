@@ -36,6 +36,6 @@ npm run dev
 👤 **Onasanya Babatunde**
 
 - Website: https://onasanyatunde.codes/
-- Twitter: [@rammyblog](https://twitter.com/rammyblog)
+- Twitter: [@simply_rammy](https://twitter.com/simply_rammy)
 - Github: [@rammyblog](https://github.com/rammyblog)
 - LinkedIn: [@onasanya-tunde](https://linkedin.com/in/onasanya-tunde)

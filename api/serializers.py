@@ -44,7 +44,10 @@ class ItemSerializer(CustomErrorSerializer, serializers.ModelSerializer):
         if Item.objects.filter(owner=owner).filter(url=obj['url']).exists():
             raise serializers.ValidationError(
                 'Oppss, This url already exists, Kindly edit it to make any changes')
-        crawled_data = self.get_item_data(obj['url'], obj['store'])
+        try:
+            crawled_data = self.get_item_data(obj['url'], obj['store'])
+        except ValidationError as err:
+            raise serializers.ValidationError(err)
         obj['title'] = crawled_data['title']
         obj['last_price'] = crawled_data['last_price']
         return Item.objects.create(**obj)

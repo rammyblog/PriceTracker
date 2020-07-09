@@ -108,7 +108,7 @@ function LoginForm() {
             </Button>
           )}
         </Form.Item>
-        <Link href="/register/">
+        <Link href="/register">
           <a>
             <Text className="link-text">Don't have an account? Sign Up</Text>
           </a>

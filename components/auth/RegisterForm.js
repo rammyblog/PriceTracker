@@ -167,14 +167,19 @@ function RegisterForm() {
               onClick={() => authReset()}
             >
               {" "}
-              {loading ? <Spin indicator={antIcon} /> : " Log in"}
+              {loading ? <Spin indicator={antIcon} /> : " Register"}
             </Button>
           )}
         </Form.Item>
 
-        <Link href="/login/">
+        <Link href="/login">
           <a>
             <Text className="link-text">Already have an account? Sign in</Text>
+          </a>
+        </Link>
+        <Link href="/about">
+          <a>
+            <Text className="link-text">How to use</Text>
           </a>
         </Link>
       </Form>

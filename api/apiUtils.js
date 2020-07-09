@@ -5,7 +5,6 @@ const priceTrackerApi = axios.create({
 })
 
 priceTrackerApi.interceptors.request.use(function (config) {
-  console.log("Request Sent ss")
   const token = localStorage.getItem("priceTrackerToken")
   if (token) {
     config.headers.Authorization = `Token ${token}`

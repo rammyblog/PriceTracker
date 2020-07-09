@@ -39,7 +39,12 @@ export default function ItemCard({ data }) {
       <Card>
         <div className="card-user-info-container">
           <div className="welcome__details__pill">
-            <a className="welcome-text" href={url}>
+            <a
+              className="welcome-text"
+              target="_blank"
+              rel="noopener noreferrer"
+              href={url}
+            >
               {title}
             </a>
             <CardEdit id={id} mode="delete" />

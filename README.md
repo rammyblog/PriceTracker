@@ -1,42 +1,37 @@
-# Ant Design example
+<h1 align="center">Welcome to pTracker 👋</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
+  <a href="#" target="_blank">
+    <img alt="License: ISC" src="https://img.shields.io/badge/License-ISC-yellow.svg" />
+  </a>
+  <a href="https://twitter.com/rammyblog" target="_blank">
+    <img alt="Twitter: rammyblog" src="https://img.shields.io/twitter/follow/rammyblog.svg?style=social" />
+  </a>
+</p>
 
-This example shows how to use Next.js along with [Ant Design of React](http://ant.design). This is intended to show the integration of this UI toolkit with the Framework.
+> Price Tracker Application with Django and React used to Track Discounts on Jumia & Konga
 
-## Deploy your own
+### 🏠 [Homepage](https://price-tracker-gules.vercel.app/dashboard)
 
-Deploy the example using [Vercel](https://vercel.com):
+### ✨ [Demo](https://price-tracker-gules.vercel.app/dashboard)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/vercel/next.js/tree/canary/examples/with-ant-design-less)
+## Install
 
-## How to use
-
-### Using `create-next-app`
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
-
-```bash
-npx create-next-app --example with-ant-design-less with-ant-design-app
-# or
-yarn create next-app --example with-ant-design-less with-ant-design-app
-```
-
-### Download manually
-
-Download the example:
-
-```bash
-curl https://codeload.github.com/vercel/next.js/tar.gz/canary | tar -xz --strip=2 next.js-canary/examples/with-ant-design-less
-cd with-ant-design-less
-```
-
-Install it and run:
-
-```bash
+```sh
 npm install
-npm run dev
-# or
-yarn
-yarn dev
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/import?filter=next.js&utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## Usage
+
+```sh
+npm run dev
+```
+
+## Author
+
+👤 **Onasanya Babatunde**
+
+- Website: https://onasanyatunde.codes/
+- Twitter: [@rammyblog](https://twitter.com/rammyblog)
+- Github: [@rammyblog](https://github.com/rammyblog)
+- LinkedIn: [@onasanya-tunde](https://linkedin.com/in/onasanya-tunde)

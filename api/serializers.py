@@ -47,7 +47,8 @@ class ItemSerializer(CustomErrorSerializer, serializers.ModelSerializer):
         try:
             crawled_data = self.get_item_data(obj['url'], obj['store'])
         except ValidationError as err:
-            raise serializers.ValidationError(err)
+            print(err.messages)
+            raise serializers.ValidationError(err.messages)
         obj['title'] = crawled_data['title']
         obj['last_price'] = crawled_data['last_price']
         return Item.objects.create(**obj)
@@ -63,7 +64,7 @@ class ItemSerializer(CustomErrorSerializer, serializers.ModelSerializer):
                     url, validated_data.get('store', instance.store))
             except ValidationError as err:
                 # print(err)
-                raise serializers.ValidationError(err)
+                raise serializers.ValidationError(err.messages)
             instance.title = crawled_data['title']
             instance.last_price = crawled_data['last_price']
             instance.url = url

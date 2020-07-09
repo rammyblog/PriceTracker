@@ -19,18 +19,10 @@ class CrawlData:
 
         return bs
 
-        # title = bs.find('h1', id='itemTitle').get_text().replace("Details about", "")
-        # price = bs.find('span', id="prcIsum").get_text()
-        # clean_price = float(price.strip().replace('US', '').replace("$", ""))
-        # return {
-        #     'title':title,
-        #     'last_price': clean_price
-        # }
-
     def crawl_konga(self, url):
-        document = self.load_url(url)
 
         try:
+            document = self.load_url(url)
             price = document.find(
                 "input", {'name': 'product_price'}).get('value')
             title = document.find("title").get_text().split('|')[0]
@@ -48,8 +40,8 @@ class CrawlData:
         }
 
     def crawl_jumia(self, url):
-        document = self.load_url(url)
         try:
+            document = self.load_url(url)
             price = document.find(
                 "span", {'class': "-b -ltr -tal -fs24"}).get_text().replace("₦", "").strip()
             title = document.find("title").get_text().split('|')[0]

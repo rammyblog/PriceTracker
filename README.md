@@ -4,12 +4,12 @@
   <a href="#" target="_blank">
     <img alt="License: ISC" src="https://img.shields.io/badge/License-ISC-yellow.svg" />
   </a>
-  <a href="https://twitter.com/rammyblog" target="_blank">
-    <img alt="Twitter: rammyblog" src="https://img.shields.io/twitter/follow/rammyblog.svg?style=social" />
+  <a href="https://twitter.com/simply_rammy" target="_blank">
+    <img alt="Twitter: simply_rammy" src="https://img.shields.io/twitter/follow/rammyblog.svg?style=social" />
   </a>
 </p>
 
-> Price Tracker Application with Django and React used to Track Discounts on Jumia & Konga
+> Price Tracker Application with Django and React (Next.js) used to Track Discounts on Jumia & Konga
 
 ### 🏠 [Homepage](https://price-tracker-gules.vercel.app/dashboard)
 
@@ -22,6 +22,10 @@ npm install
 ```
 
 ## Usage
+
+> Ensure you follow the instructions on the master branch to get the backend running on your local.
+>
+> > Create a .env file in the root directory and paste this there API_BASE_URL=http://127.0.0.1:8000/
 
 ```sh
 npm run dev

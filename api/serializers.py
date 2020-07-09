@@ -46,7 +46,7 @@ class ItemSerializer(CustomErrorSerializer, serializers.ModelSerializer):
 
     def create(self, obj):
         owner = self.get_user()
-        if Item.objects.filter(url=obj['url']).exists():
+        if Item.objects.owner(owner=owner).filter(url=obj['url']).exists():
             raise serializers.ValidationError(
                 'Oppss, This url already exists, Kindly edit it to make any changes')
         crawled_data = self.get_item_data(obj['url'], obj['store'])
@@ -57,7 +57,7 @@ class ItemSerializer(CustomErrorSerializer, serializers.ModelSerializer):
     def update(self, instance, validated_data):
         url = validated_data.get('url', instance.url)
         if(url != instance.url):
-            if Item.objects.filter(url=url).exists():
+            if Item.objects.owner(owner=self.get_user()).filter(url=url).exists():
                 raise serializers.ValidationError(
                     'Oppss, This url already exists, Kindly edit it to make any changes')
             try:

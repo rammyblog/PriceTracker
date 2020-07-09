@@ -1,5 +1,5 @@
 # PriceTracker
-Price Tracker Application with Django used to Track Discounts on Ebay
+Price Tracker Application with Django and React  used to Track Discounts on Jumia and Konga 
 
 
 To run the application, run the following commands on your terminal

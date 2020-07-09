@@ -1,11 +1,13 @@
-import time
-from celery import shared_task
-from .models import Item
-from .utils import CrawlData
-from django.core.exceptions import ValidationError
 import os
+import time
+
+from celery import shared_task
+from django.core.exceptions import ValidationError
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
+
+from .models import Item
+from .utils import CrawlData
 
 
 def get_item_data(url, store):
@@ -16,13 +18,16 @@ def get_item_data(url, store):
         return crawl.crawl_jumia(url)
 
 
-def send_email(email, last_price, title):
+def send_email(email, last_price, title, url):
     print('meail')
     message = Mail(
         from_email='info@ptracker.com',
         to_emails=email,
         subject=f'{title} got a price update',
-        html_content=f'The new price is {last_price}')
+        html_content=f'You recently added {title} on pTracker.<br/> We have good news for you 🥳 the price has been '
+                     f'updated to fit your budget 🎉🎉. <br/> The new price is <strong> ₦{last_price}</strong>. '
+                     f'</br>Click <a href={url}>here</a> to buy now, or copy the link below and paste in your browser '
+                     f'<br> {url}')
     try:
         sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
         response = sg.send(message)
@@ -52,7 +57,8 @@ def track_for_discount():
                 email = item.owner.email
                 last_price = last_price
                 title = item.title
-                send_email(email, last_price, title)
+                url = item.url
+                send_email(email, last_price, title, url)
                 item_discount = Item.objects.get(id=item.id)
                 item_discount.last_price = data['last_price']
                 item_discount.discount_price = f'DISCOUNT! The price is {data["last_price"]}'

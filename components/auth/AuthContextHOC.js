@@ -9,7 +9,6 @@ export default function AuthContextHOC(Component) {
   return function authHoc(props) {
     return (
       <AuthProvider>
-      
         <Component {...props} />
       </AuthProvider>
     )

@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react"
+import { useState, useEffect } from "react"
 import { Menu } from "antd"
 import {
   SettingOutlined,
@@ -7,13 +7,20 @@ import {
   GithubOutlined,
   LogoutOutlined,
 } from "@ant-design/icons"
-import { AuthContext } from "../../context/auth/authContext"
+// import { AuthContext } from "../../context/auth/authContext"
 import Router from "next/router"
 import Link from "next/link"
 
 export default function Navbar() {
   const [current, setcurrent] = useState("home")
-  const { authReset } = useContext(AuthContext)
+  const [auth, setAuth] = useState(false)
+
+  useEffect(() => {
+    const token = localStorage.getItem("priceTrackerToken")
+    if (token) {
+      setAuth(true)
+    }
+  }, [])
 
   const handleClick = (e) => {
     console.log(e.key)
@@ -65,13 +72,15 @@ export default function Navbar() {
           Source Code
         </a>
       </Menu.Item>
-      <Menu.Item
-        style={{ float: "right" }}
-        key="logout"
-        icon={<LogoutOutlined />}
-      >
-        Log out
-      </Menu.Item>
+      {auth ? (
+        <Menu.Item
+          style={{ float: "right" }}
+          key="logout"
+          icon={<LogoutOutlined />}
+        >
+          Log out
+        </Menu.Item>
+      ) : null}
     </Menu>
   )
 }

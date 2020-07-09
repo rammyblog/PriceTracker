@@ -67,7 +67,9 @@ export const TrackerProvider = ({ children }) => {
       })
       return true
     } catch (error) {
-      // console.log({ error })
+      // if (error.response.data ) {
+
+      // }
 
       dispatch({
         type: types.TRACKER_FAILURE,

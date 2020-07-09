@@ -20,7 +20,6 @@ export default function WelcomeCard({ data }) {
   const { username } = data
   const { state } = useContext(TrackerContext)
   const { data: allItems } = state
-  console.log(allItems)
 
   return (
     <div>

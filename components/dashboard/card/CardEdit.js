@@ -15,7 +15,6 @@ const CardEdit = ({ id, mode }) => {
   const handleEditClick = (id) => {
     seteditData(getSingleItem(id)[0])
     setmodalVisible(true)
-    console.log("edit")
   }
 
   const onCreate = () => {
@@ -23,7 +22,6 @@ const CardEdit = ({ id, mode }) => {
   }
 
   const handleDeleteClick = (id) => {
-    console.log("delete")
     deleteItem(id)
   }
 

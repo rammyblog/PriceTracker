@@ -131,7 +131,7 @@ const ItemForm = ({ visible, onCreate, onCancel, mode, initialData }) => {
         </Form.Item>
         <Form.Item
           name="requested_price"
-          label="Tracking price"
+          label="Desired price"
           rules={[
             {
               required: true,

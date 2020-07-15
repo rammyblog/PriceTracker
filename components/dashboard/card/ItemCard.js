@@ -58,7 +58,7 @@ export default function ItemCard({ data }) {
 
         <div className="price-card-container">
           <ItemPriceInfo
-            data={{ number: requested_price, text: "Requested Price" }}
+            data={{ number: requested_price, text: "Desired Price" }}
           />
           <ItemPriceInfo
             data={{ number: last_price, text: "Last Price Updated" }}

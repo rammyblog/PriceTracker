@@ -20,6 +20,7 @@ export const AuthProvider = ({ children }) => {
 
   const localStorageTest = () => {
     let hasLocalStorage = false
+    console.log(localStorage)
 
     if (localStorage) {
       try {
@@ -36,7 +37,7 @@ export const AuthProvider = ({ children }) => {
 
   const loginUser = useCallback(
     async (userData) => {
-      if (!localStorageTest) {
+      if (localStorageTest()) {
         try {
           dispatch({
             type: types.AUTH_START,
@@ -75,7 +76,7 @@ export const AuthProvider = ({ children }) => {
 
   const registerUser = useCallback(
     async (userData) => {
-      if (!localStorageTest) {
+      if (localStorageTest()) {
         try {
           dispatch({
             type: types.AUTH_START,

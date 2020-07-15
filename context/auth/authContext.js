@@ -36,12 +36,13 @@ export const AuthProvider = ({ children }) => {
           type: types.AUTH_SUCCESS,
           payload: res.data,
         })
-      } catch (e) {
+      } catch (error) {
         dispatch({
           type: types.AUTH_FAILURE,
-          payload: e.response.data.error_msg || "An error occured",
+          payload: error.response.data
+            ? error.response.data.error_msg
+            : "An error occured",
         })
-        console.log(e.response.data)
       }
     },
     [dispatch]
@@ -65,12 +66,13 @@ export const AuthProvider = ({ children }) => {
           type: types.AUTH_SUCCESS,
           payload: res.data,
         })
-      } catch (e) {
+      } catch (error) {
         dispatch({
           type: types.AUTH_FAILURE,
-          payload: e.response.data.error_msg || "An error occured",
+          payload: error.response.data
+            ? error.response.data.error_msg
+            : "An error occured",
         })
-        console.log(e.response.data)
       }
     },
     [dispatch]
@@ -93,12 +95,13 @@ export const AuthProvider = ({ children }) => {
         type: types.GET_USER,
         payload: res.data,
       })
-    } catch (e) {
+    } catch (error) {
       dispatch({
         type: types.AUTH_FAILURE,
-        payload: e.response.data.error_msg || "An error occured",
+        payload: error.response.data
+          ? error.response.data.error_msg
+          : "An error occured",
       })
-      console.log(e.response.data)
     }
   }, [dispatch])
 

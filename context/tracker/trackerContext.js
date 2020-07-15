@@ -20,7 +20,7 @@ export const TrackerProvider = ({ children }) => {
       dispatch({
         type: types.TRACKER_START,
       })
-      let res = await priceTrackerApi.get(`api/items`)
+      let res = await priceTrackerApi.get(`api/items/`)
       dispatch({
         type: types.TRACKER_SUCCESS,
         payload: res.data,

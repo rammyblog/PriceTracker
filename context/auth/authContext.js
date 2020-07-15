@@ -18,31 +18,55 @@ export const AuthProvider = ({ children }) => {
   const BASE_AUTH_URL = process.env.API_BASE_URL + "api/"
   const [state, dispatch] = useReducer(AuthReducer, initialAuthState)
 
+  const localStorageTest = () => {
+    let hasLocalStorage = false
+
+    if (localStorage) {
+      try {
+        const x = "testStorage"
+        localStorage.setItem(x, x)
+        localStorage.removeItem(x)
+        hasLocalStorage = true
+      } catch (e) {
+        hasLocalStorage = false
+      }
+    }
+    return hasLocalStorage
+  }
+
   const loginUser = useCallback(
     async (userData) => {
-      try {
-        dispatch({
-          type: types.AUTH_START,
-        })
+      if (!hasLocalStorage) {
+        try {
+          dispatch({
+            type: types.AUTH_START,
+          })
 
-        let res = await priceTrackerApi.post(`api/login/`, userData)
+          let res = await priceTrackerApi.post(`api/login/`, userData)
 
-        const token = res.data.key
-        const expirationDate = new Date(new Date().getTime() + 3600 * 1000)
-        localStorage.setItem("priceTrackerToken", token)
-        localStorage.setItem("expirationDate", expirationDate)
+          const token = res.data.key
+          const expirationDate = new Date(new Date().getTime() + 3600 * 1000)
+          localStorage.setItem("priceTrackerToken", token)
+          localStorage.setItem("expirationDate", expirationDate)
 
-        dispatch({
-          type: types.AUTH_SUCCESS,
-          payload: res.data,
-        })
-      } catch (error) {
-        console.log({ error })
+          dispatch({
+            type: types.AUTH_SUCCESS,
+            payload: res.data,
+          })
+        } catch (error) {
+          console.log({ error })
+          dispatch({
+            type: types.AUTH_FAILURE,
+            payload: error.response
+              ? error.response.data.error_msg
+              : "An error occured",
+          })
+        }
+      } else {
         dispatch({
           type: types.AUTH_FAILURE,
-          payload: error.response
-            ? error.response.data.error_msg
-            : "An error occured",
+          payload:
+            "Your browser doesn't support a particular feature, If you are on Safari, ensure you are not using private mode",
         })
       }
     },
@@ -51,28 +75,36 @@ export const AuthProvider = ({ children }) => {
 
   const registerUser = useCallback(
     async (userData) => {
-      try {
-        dispatch({
-          type: types.AUTH_START,
-        })
+      if (!hasLocalStorage) {
+        try {
+          dispatch({
+            type: types.AUTH_START,
+          })
 
-        let res = await axios.post(`${BASE_AUTH_URL}register/`, userData)
+          let res = await axios.post(`${BASE_AUTH_URL}register/`, userData)
 
-        const token = res.data.key
-        const expirationDate = new Date(new Date().getTime() + 3600 * 1000)
-        localStorage.setItem("priceTrackerToken", token)
-        localStorage.setItem("expirationDate", expirationDate)
+          const token = res.data.key
+          const expirationDate = new Date(new Date().getTime() + 3600 * 1000)
+          localStorage.setItem("priceTrackerToken", token)
+          localStorage.setItem("expirationDate", expirationDate)
 
-        dispatch({
-          type: types.AUTH_SUCCESS,
-          payload: res.data,
-        })
-      } catch (error) {
+          dispatch({
+            type: types.AUTH_SUCCESS,
+            payload: res.data,
+          })
+        } catch (error) {
+          dispatch({
+            type: types.AUTH_FAILURE,
+            payload: error.response
+              ? error.response.data.error_msg
+              : "An error occured",
+          })
+        }
+      } else {
         dispatch({
           type: types.AUTH_FAILURE,
-          payload: error.response
-            ? error.response.data.error_msg
-            : "An error occured",
+          payload:
+            "Your browser doesn't support a particular feature, If you are on Safari, ensure you are not using private mode",
         })
       }
     },

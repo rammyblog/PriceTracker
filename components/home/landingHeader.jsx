@@ -1,6 +1,7 @@
 import React from "react"
 import { Button } from "antd"
 import "./LandingHeader.less"
+import Link from "next/link"
 
 function LandingHeader() {
   return (
@@ -10,22 +11,30 @@ function LandingHeader() {
           Get products on your favourite Online store at your desired price.
         </p>
         <p className="heading-subtext">
-          We are aware that keeping up with prices on stores online can be very
-          tedious😫. But With pTracker, you can track those products without
-          having to worry. You will receive an email alert when the products are
-          selling at the price you chose.
+          Keeping up with prices on stores online can be very tedious😫. With
+          pTracker, you can track those products without having to worry. You
+          will receive an email alert when the products are selling at the price
+          you chose.
         </p>
 
-        <Button
-          type="primary"
-          size="large"
-          className="button__custom get__started__btn"
-        >
-          Get Started
-        </Button>
-        <Button size="large" className="button__custom" type="info">
-          Learn More
-        </Button>
+        <Link href="/dashboard">
+          <a>
+            <Button
+              type="primary"
+              size="large"
+              className="button__custom get__started__btn"
+            >
+              Get Started
+            </Button>
+          </a>
+        </Link>
+        <Link href="/about">
+          <a>
+            <Button size="large" className="button__custom" type="info">
+              Learn More
+            </Button>
+          </a>
+        </Link>
       </div>
       <div className="half__width image-col">
         <img

@@ -9,12 +9,16 @@
   margin-left: auto;
   padding-top: 1rem;
 }
+.about-setion {
+  padding-bottom: 2rem;
+}
 .ant-typography {
   text-align: justify;
 }
 .gif-container {
-  width: 100%;
   margin: 0 auto;
+  padding: 1.3rem 0;
+  width: 100%;
 }
 @media (min-width: 768px) {
   .container {

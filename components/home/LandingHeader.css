@@ -26,6 +26,7 @@ img {
 .button__custom {
   border-radius: 6px;
   margin-right: 1rem;
+  border-color: none;
 }
 .get__started__btn {
   box-shadow: 1px 1px 5px #3e3e3e;

@@ -1,0 +1,23 @@
+.nav-link {
+  float: right;
+}
+.icon-header-text {
+  font-size: 1.3rem;
+  color: #fff;
+  margin: 0;
+}
+.button__custom {
+  border-radius: 6px;
+  margin-right: 1rem;
+  border-color: none;
+}
+.get__started__btn {
+  box-shadow: 1px 1px 5px #3e3e3e;
+  background: #001529;
+}
+@media (max-width: 474px) {
+  .nav-link {
+    float: none;
+    color: #001529;
+  }
+}

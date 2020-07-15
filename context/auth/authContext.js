@@ -37,6 +37,7 @@ export const AuthProvider = ({ children }) => {
           payload: res.data,
         })
       } catch (error) {
+        console.log({ error })
         dispatch({
           type: types.AUTH_FAILURE,
           payload: error.response

@@ -10,6 +10,7 @@ import {
 // import { AuthContext } from "../../context/auth/authContext"
 import Router from "next/router"
 import Link from "next/link"
+import "../home/HomeNavbarStyled.less"
 
 export default function Navbar() {
   const [current, setcurrent] = useState("home")
@@ -73,11 +74,7 @@ export default function Navbar() {
         </a>
       </Menu.Item>
       {auth ? (
-        <Menu.Item
-          style={{ float: "right" }}
-          key="logout"
-          icon={<LogoutOutlined />}
-        >
+        <Menu.Item className="nav-link" key="logout" icon={<LogoutOutlined />}>
           Log out
         </Menu.Item>
       ) : null}

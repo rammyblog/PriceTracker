@@ -73,7 +73,7 @@ export const TrackerProvider = ({ children }) => {
 
       dispatch({
         type: types.TRACKER_FAILURE,
-        payload: error.response.data ? error.response.data : "An error occured",
+        payload: error.response ? error.response.data : "An error occured",
       })
       return false
     }
@@ -96,7 +96,7 @@ export const TrackerProvider = ({ children }) => {
 
       dispatch({
         type: types.TRACKER_FAILURE,
-        payload: error.response.data ? error.response.data : "An error occured",
+        payload: error.response ? error.response.data : "An error occured",
       })
       return false
     }

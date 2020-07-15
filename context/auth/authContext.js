@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }) => {
       } catch (error) {
         dispatch({
           type: types.AUTH_FAILURE,
-          payload: error.response.data
+          payload: error.response
             ? error.response.data.error_msg
             : "An error occured",
         })
@@ -69,7 +69,7 @@ export const AuthProvider = ({ children }) => {
       } catch (error) {
         dispatch({
           type: types.AUTH_FAILURE,
-          payload: error.response.data
+          payload: error.response
             ? error.response.data.error_msg
             : "An error occured",
         })
@@ -98,7 +98,7 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       dispatch({
         type: types.AUTH_FAILURE,
-        payload: error.response.data
+        payload: error.response
           ? error.response.data.error_msg
           : "An error occured",
       })

@@ -23,7 +23,7 @@ const ItemForm = ({ visible, onCreate, onCancel, mode, initialData }) => {
 
     values.store = determineStore(values.url)
 
-    console.log({ values })
+    // console.log({ values })
     if (await createItem(values)) {
       message.success("Added item successfully")
       onCreate()
@@ -49,7 +49,6 @@ const ItemForm = ({ visible, onCreate, onCancel, mode, initialData }) => {
 
   const handleCloseForm = () => {
     trackerReset()
-    console.log("on close")
     onCreate()
   }
 
@@ -77,7 +76,7 @@ const ItemForm = ({ visible, onCreate, onCancel, mode, initialData }) => {
             // onCreate()
           })
           .catch((info) => {
-            console.log("Validate Failed:", info)
+            // console.log("Validate Failed:", info)/
           })
       }}
     >

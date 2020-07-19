@@ -24,7 +24,6 @@ export default function Navbar() {
   }, [])
 
   const handleClick = (e) => {
-    console.log(e.key)
 
     setcurrent(e.key)
     // this.setState({ current: e.key })

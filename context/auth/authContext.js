@@ -20,7 +20,6 @@ export const AuthProvider = ({ children }) => {
 
   const localStorageTest = () => {
     let hasLocalStorage = false
-    console.log(localStorage)
 
     if (localStorage) {
       try {
@@ -55,7 +54,6 @@ export const AuthProvider = ({ children }) => {
             payload: res.data,
           })
         } catch (error) {
-          console.log({ error })
           dispatch({
             type: types.AUTH_FAILURE,
             payload: error.response

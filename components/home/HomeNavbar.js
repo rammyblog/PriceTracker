@@ -5,7 +5,7 @@ import "./HomeNavbarStyled.less"
 import Link from "next/link"
 
 function HomeNavbar() {
-  const [current, setCurrent] = useState("mail")
+  const [current, setCurrent] = useState('home')
 
   const handleClick = (e) => {
     setCurrent(e.key)

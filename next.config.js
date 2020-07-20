@@ -46,15 +46,23 @@
 const withLess = require("@zeit/next-less")
 const withCss = require("@zeit/next-css")
 const lessToJS = require("less-vars-to-js")
+const withPWA = require('next-pwa')
 const fs = require("fs")
 const path = require("path")
+const isProd = process.env.NODE_ENV === "production"
 
 // Where your antd-custom.less file lives
 const themeVariables = lessToJS(
   fs.readFileSync(path.resolve(__dirname, "./assets/antd-custom.less"), "utf8")
 )
 
-module.exports = withCss({
+module.exports = withPWA({
+
+  pwa: {
+    disable: !isProd,
+    dest: 'public'
+},
+  ...withCss({
   cssModules: true,
   ...withLess({
     lessLoaderOptions: {
@@ -95,3 +103,12 @@ module.exports = withCss({
     },
   }),
 })
+
+})
+
+// module.exports = withPWA({
+//   pwa: {
+//       dest: 'public'
+//   }
+
+// })

@@ -17,7 +17,7 @@ const CreateItemButton = () => {
           setVisible(true)
         }}
       >
-        New Item
+        New Product
       </Button>
       <ItemForm
         visible={visible}

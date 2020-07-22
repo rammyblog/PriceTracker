@@ -17,7 +17,7 @@ function LandingHeader() {
           you chose.
         </p>
 
-        <Link href="/dashboard">
+        <Link prefetch="false" href="/dashboard">
           <a>
             <Button
               type="primary"
@@ -28,7 +28,7 @@ function LandingHeader() {
             </Button>
           </a>
         </Link>
-        <Link href="/about">
+        <Link prefetch="false" href="/about">
           <a>
             <Button size="large" className="button__custom" type="info">
               Learn More

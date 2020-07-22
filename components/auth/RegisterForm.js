@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../../context/auth/authContext"
 import AuthContextHOC from "./AuthContextHOC"
-import { Form, Input, Button, Alert, Spin } from "antd"
+import { Form, Input, Button, Alert, Spin, message } from "antd"
 import {
   UserOutlined,
   LockOutlined,
@@ -27,6 +27,7 @@ function RegisterForm() {
 
   useEffect(() => {
     if (token) {
+      message.success("Registration Success")
       Router.push("/dashboard")
     }
   }, [token])

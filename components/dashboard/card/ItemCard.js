@@ -47,7 +47,7 @@ export default function ItemCard({ data }) {
             >
               {title}
             </a>
-            <CardEdit id={id} mode="delete" />
+            <CardEdit id={id} mode="delete" product_title={title} />
           </div>
 
           {/* <span className="welcome-text-muted">

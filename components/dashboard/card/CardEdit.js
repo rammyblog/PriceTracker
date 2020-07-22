@@ -1,13 +1,13 @@
 import React, { useContext, useState } from "react"
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons"
 import { TrackerContext } from "../../../context/tracker/trackerContext"
-import { Popconfirm } from "antd"
+import { Popconfirm, message } from "antd"
 import { QuestionCircleOutlined } from "@ant-design/icons"
 import ItemForm from "../itemForm/itemForm"
 import "./CardEdit.less"
 // import ItemForm from "./itemForm"
 
-const CardEdit = ({ id, mode }) => {
+const CardEdit = ({ id, mode, product_title }) => {
   const [modalVisible, setmodalVisible] = useState(false)
   const [editData, seteditData] = useState(null)
 
@@ -22,9 +22,9 @@ const CardEdit = ({ id, mode }) => {
   }
 
   const handleDeleteClick = (id) => {
+    message.success(`${product_title} deleted successfully`)
     deleteItem(id)
   }
-
   return (
     <>
       <div className="edit-icons">

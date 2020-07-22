@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../../context/auth/authContext"
 import AuthContextHOC from "./AuthContextHOC"
-import { Form, Input, Button, Alert, Spin } from "antd"
+import { Form, Input, Button, Alert, Spin, message } from "antd"
 import { UserOutlined, LockOutlined, LoadingOutlined } from "@ant-design/icons"
 import { Typography } from "antd"
 import Link from "next/link"
@@ -20,6 +20,7 @@ function LoginForm() {
 
   useEffect(() => {
     if (token) {
+      message.success("Login Success")
       Router.push("/dashboard")
     }
   }, [token])

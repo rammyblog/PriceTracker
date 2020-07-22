@@ -66,7 +66,7 @@ export const TrackerReducer = (state, action) => {
         .filter((data) => data.id !== action.payload.id)
       return {
         ...state,
-        data: [...tempState, action.payload],
+        data: [action.payload, ...tempState],
         loading: false,
         error: false,
         errResponse: "",

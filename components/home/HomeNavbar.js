@@ -52,35 +52,36 @@ function HomeNavbar() {
             <a>How To Use</a>
           </Link>
         </Menu.Item>
-        {auth
-          ? ["dashboard", "logout"].map((item) => (
-              <Menu.Item className="nav-link" key={item}>
-                <Link prefetch="false" href={`/${item}`}>
-                  <a>{item}</a>
-                </Link>
-              </Menu.Item>
-            ))
-          : ["login", "register"].map((item) => (
-              <Menu.Item className="nav-link" key={item}>
-                <Link prefetch="false" href={`/${item}`}>
-                  <a>{item}</a>
-                </Link>
-              </Menu.Item>
-            ))
+        {
+          auth
+            ? ["dashboard"].map((item) => (
+                <Menu.Item className="nav-link" key={item}>
+                  {/* <Link href={`/${item}`}> */}
+                  <a href={`/${item}`}>{item}</a>
+                  {/* // </Link> */}
+                </Menu.Item>
+              ))
+            : ["login", "register"].map((item) => (
+                <Menu.Item className="nav-link" key={item}>
+                  {/* <Link passHref href={`/${item}`}> */}
+                  <a href={`/${item}`}>{item}</a>
+                  {/* </Link> */}
+                </Menu.Item>
+              ))
 
-            // <Menu.Item className="nav-link" key="register">
-            //   <Link href="/register">
-            //     <a>
-            //       <Button
-            //         type="info"
-            //         // size="large"
-            //         className="button__custom"
-            //       >
-            //         Register
-            //       </Button>
-            //     </a>
-            //   </Link>
-            // </Menu.Item>
+          // <Menu.Item className="nav-link" key="register">
+          //   <Link href="/register">
+          //     <a>
+          //       <Button
+          //         type="info"
+          //         // size="large"
+          //         className="button__custom"
+          //       >
+          //         Register
+          //       </Button>
+          //     </a>
+          //   </Link>
+          // </Menu.Item>
         }
       </Menu>
     </div>

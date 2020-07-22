@@ -1,8 +1,8 @@
 import React from "react"
 import DashboardContextHOC from "../DashboardContextHOC"
 import { Typography, Divider } from "antd"
-import "./About.less"
 const { Title, Paragraph, Text } = Typography
+import "./About.less"
 
 function AboutUs() {
   return (
@@ -28,7 +28,7 @@ function AboutUs() {
         <Title level={2}>How to Use pTracker</Title>
         <Paragraph>
           It is quite easy to use the application, All you need to do is to get
-          the URL of the product you want to track from the store, then add a
+          the link of the product you want to track from the store, then add a
           new item in the dashboard. After successfully adding the product to
           your products catalogue, pTracker will automatically start tracking
           the product. Once pTracker tracks the desired price you want to buy

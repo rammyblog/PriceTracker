@@ -12,23 +12,22 @@ function LandingHeader() {
         </p>
         <p className="heading-subtext">
           Keeping up with product prices online can be very tedious😫. But With
-          pTracker, you can track those products without having to worry. You
-          will receive an email alert when the products are selling at the price
-          you chose.
+          pTracker, you can track those products without having to worry. As
+          soon as the product sells at the desired price you chose, we will
+          notify you with an email alert.
         </p>
 
-        <Link prefetch="false" href="/dashboard">
-          <a>
-            <Button
-              type="primary"
-              size="large"
-              className="button__custom get__started__btn"
-            >
-              Get Started
-            </Button>
-          </a>
-        </Link>
-        <Link prefetch="false" href="/about">
+        <a href="/dashboard">
+          <Button
+            type="primary"
+            size="large"
+            className="button__custom get__started__btn"
+          >
+            Get Started
+          </Button>
+        </a>
+
+        <Link href="/about">
           <a>
             <Button size="large" className="button__custom" type="info">
               Learn More

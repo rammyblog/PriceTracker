@@ -46,9 +46,10 @@
 const withLess = require("@zeit/next-less")
 const withCss = require("@zeit/next-css")
 const lessToJS = require("less-vars-to-js")
-const withPWA = require('next-pwa')
+const withPWA = require("next-pwa")
 const fs = require("fs")
 const path = require("path")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const isProd = process.env.NODE_ENV === "production"
 
 // Where your antd-custom.less file lives
@@ -57,53 +58,56 @@ const themeVariables = lessToJS(
 )
 
 module.exports = withPWA({
-
   pwa: {
     disable: !isProd,
-    dest: 'public'
-},
+    dest: "public",
+  },
   ...withCss({
-  cssModules: true,
-  ...withLess({
-    lessLoaderOptions: {
-      javascriptEnabled: true,
-      modifyVars: themeVariables, // make your antd custom effective
-      importLoaders: 0,
-    },
-    cssLoaderOptions: {
-      importLoaders: 3,
-      localIdentName: "[local]___[hash:base64:5]",
-    },
-    env: {
-      API_BASE_URL: process.env.API_BASE_URL,
-    },
-    webpack: (config, { isServer }) => {
-      //Make Ant styles work with less
-      if (isServer) {
-        const antStyles = /antd\/.*?\/style.*?/
-        const origExternals = [...config.externals]
-        config.externals = [
-          (context, request, callback) => {
-            if (request.match(antStyles)) return callback()
-            if (typeof origExternals[0] === "function") {
-              origExternals[0](context, request, callback)
-            } else {
-              callback()
-            }
-          },
-          ...(typeof origExternals[0] === "function" ? [] : origExternals),
-        ]
-
-        config.module.rules.unshift({
-          test: antStyles,
-          use: "null-loader",
+    cssModules: true,
+    ...withLess({
+      lessLoaderOptions: {
+        javascriptEnabled: true,
+        modifyVars: themeVariables, // make your antd custom effective
+        importLoaders: 0,
+      },
+      cssLoaderOptions: {
+        importLoaders: 3,
+        localIdentName: "[local]___[hash:base64:5]",
+      },
+      env: {
+        API_BASE_URL: process.env.API_BASE_URL,
+      },
+      webpack: (config, { isServer }) => {
+        new MiniCssExtractPlugin({
+          ignoreOrder: true,
         })
-      }
-      return config
-    },
-  }),
-})
 
+        //Make Ant styles work with less
+        if (isServer) {
+          const antStyles = /antd\/.*?\/style.*?/
+
+          const origExternals = [...config.externals]
+          config.externals = [
+            (context, request, callback) => {
+              if (request.match(antStyles)) return callback()
+              if (typeof origExternals[0] === "function") {
+                origExternals[0](context, request, callback)
+              } else {
+                callback()
+              }
+            },
+            ...(typeof origExternals[0] === "function" ? [] : origExternals),
+          ]
+
+          config.module.rules.unshift({
+            test: antStyles,
+            use: "null-loader",
+          })
+        }
+        return config
+      },
+    }),
+  }),
 })
 
 // module.exports = withPWA({

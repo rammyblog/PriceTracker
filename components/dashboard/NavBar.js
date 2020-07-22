@@ -24,7 +24,6 @@ export default function Navbar() {
   }, [])
 
   const handleClick = (e) => {
-
     setcurrent(e.key)
     // this.setState({ current: e.key })
   }
@@ -45,7 +44,7 @@ export default function Navbar() {
   return (
     <Menu onClick={handleClick} selectedKeys={current} mode="horizontal">
       <Menu.Item key="home" icon={<HomeOutlined />}>
-        <Link href="/dashboard">
+        <Link href="/dashboard" passHref>
           <a>Dashboard</a>
         </Link>
       </Menu.Item>

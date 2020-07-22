@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../../context/auth/authContext"
 import AuthContextHOC from "./AuthContextHOC"
-import { Form, Input, Button, Alert, Spin, message } from "antd"
+import { Form, Input, Button, Alert, Spin, message, Typography } from "antd"
 import {
   UserOutlined,
   LockOutlined,
@@ -11,7 +11,6 @@ import {
 } from "@ant-design/icons"
 import Link from "next/link"
 
-import { Typography } from "antd"
 import Router from "next/router"
 
 function RegisterForm() {

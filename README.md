@@ -11,9 +11,9 @@
 
 > Price Tracker Application with Django and React (Next.js) used to Track Discounts on Jumia & Konga
 
-### 🏠 [Homepage](https://price-tracker-gules.vercel.app/dashboard)
+### 🏠 [Homepage](https://pTracker.vercel.app/)
 
-### ✨ [Demo](https://price-tracker-gules.vercel.app/dashboard)
+### ✨ [Demo](https://pTracker.vercel.app/)
 
 ## Install
 

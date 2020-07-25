@@ -12,7 +12,7 @@
 # PriceTracker
 Price Tracker Application with Django and React  used to Track Discounts on Jumia and Konga 
 
-##Install
+## Install
 To install the application, run the following commands on your terminal
 
 ```git clone https://github.com/rammyblog/PriceTracker.git``` 

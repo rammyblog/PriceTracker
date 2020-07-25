@@ -1,12 +1,13 @@
 
 from urllib.request import urlopen, Request
+
 from bs4 import BeautifulSoup
 from django.core.exceptions import ValidationError
 
 
 class CrawlData:
 
-    # def __init__(self):
+
     def load_url(self, url):
 
         # User Agent is to prevent 403 Forbidden Error
@@ -29,7 +30,7 @@ class CrawlData:
 
         except:
             raise ValidationError(
-                'An error occured. Double check the URL and ensure it leads to the product page')
+                'An error occurred. Double check the URL and ensure it leads to the product page')
 
             # price = '0'
             # title = 'Not Found'
@@ -47,7 +48,7 @@ class CrawlData:
             title = document.find("title").get_text().split('|')[0]
         except:
             raise ValidationError(
-                'An error occured. Double check the URL and ensure it leads to the product page')
+                'An error occurred. Double check the URL and ensure it leads to the product page')
             # price = '0'
             # title = 'Not Found'
         return {
@@ -61,3 +62,11 @@ class CrawlData:
 
 # a = CrawlData().crawl_jumia('https://www.jumia.com.ng/infinix-infinix-hot-9-playx680-6.82-hd-cinematic-display-32gb-rom2gb-ram-8mp13mp-6000mah-4g-lte-midnight-black-59578557.html')
 # print(a)
+
+
+def get_item_data(url, store):
+    crawl = CrawlData()
+    if store == 'KO':
+        return crawl.crawl_konga(url)
+    if store == 'JM':
+        return crawl.crawl_jumia(url)

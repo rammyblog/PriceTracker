@@ -8,8 +8,20 @@ from pricechecker.models import Item
 
 class ItemViewSet(viewsets.ModelViewSet):
     """
-    A simple ViewSet for listing or retrieving users.
-    """
+           retrieve:
+           Return the an itemm from the db.
+
+           list:
+           Return a list of all the items.
+
+           create:
+           Create a new item
+           To create an item, you only need to send the
+           * URL
+           * requested_price.
+           The remaining fields will be auto populated by the scraper.
+           The custom create method is in use by the serializer.
+       """
 
     serializer_class = ItemSerializer
 

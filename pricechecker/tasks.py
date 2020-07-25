@@ -7,15 +7,15 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
 from .models import Item
-from .utils import CrawlData
+from .utils import get_item_data
 
 
-def get_item_data(url, store):
-    crawl = CrawlData()
-    if store == 'KO':
-        return crawl.crawl_konga(url)
-    if store == 'JM':
-        return crawl.crawl_jumia(url)
+# def get_item_data(url, store):
+#     crawl = CrawlData()
+#     if store == 'KO':
+#         return crawl.crawl_konga(url)
+#     if store == 'JM':
+#         return crawl.crawl_jumia(url)
 
 
 def send_email(email, last_price, title, url):

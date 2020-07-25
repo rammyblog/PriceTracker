@@ -1,6 +1,6 @@
 from django.core.exceptions import ValidationError
 from pricechecker.models import Item
-from pricechecker.utils import CrawlData
+from pricechecker.utils import get_item_data
 from rest_auth.registration.serializers import RegisterSerializer
 from rest_auth.serializers import PasswordResetSerializer, LoginSerializer
 from rest_framework import serializers
@@ -25,14 +25,6 @@ class ItemSerializer(CustomErrorSerializer, serializers.ModelSerializer):
         model = Item
         fields = '__all__'
 
-    @staticmethod
-    def get_item_data(url, store):
-        crawl = CrawlData()
-        if store == 'KO':
-            return crawl.crawl_konga(url)
-        if store == 'JM':
-            return crawl.crawl_jumia(url)
-
     def get_user(self):
         request = self.context.get("request")
         if request and hasattr(request, "user"):
@@ -45,7 +37,7 @@ class ItemSerializer(CustomErrorSerializer, serializers.ModelSerializer):
             raise serializers.ValidationError(
                 'Oppss, This url already exists, Kindly edit it to make any changes')
         try:
-            crawled_data = self.get_item_data(obj['url'], obj['store'])
+            crawled_data = get_item_data(obj['url'], obj['store'])
         except ValidationError as err:
             print(err.messages)
             raise serializers.ValidationError(err.messages)
@@ -60,7 +52,7 @@ class ItemSerializer(CustomErrorSerializer, serializers.ModelSerializer):
                 raise serializers.ValidationError(
                     'Oppss, This url already exists, Kindly edit it to make any changes')
             try:
-                crawled_data = self.get_item_data(
+                crawled_data = get_item_data(
                     url, validated_data.get('store', instance.store))
             except ValidationError as err:
                 # print(err)
